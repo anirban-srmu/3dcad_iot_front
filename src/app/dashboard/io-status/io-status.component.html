@@ -1,0 +1,19 @@
+
+<div class="machine-home-container"  >
+  <div class="io-status-container ">
+    <!-- <h3 class="text-center mb-3">IO STATUS MONITOR</h3> -->
+  
+    <div class="io-grid">
+      <ng-container *ngFor="let item of ioItems">
+        <div class="io-card text-center" [ngClass]="{ 'highlight': item.value }">
+          <div class="card-body p-1 d-flex flex-column align-items-center">
+            <div class="io-indicator" [ngClass]="{ 'active': item.value }"></div>
+            <div class="io-label text-truncate" title="{{ item.name }}">
+              {{ item.name }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

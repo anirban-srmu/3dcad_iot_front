@@ -1,0 +1,64 @@
+
+<div class="machine-home-container"  >
+
+
+<div class="cards-wrapper">
+    <!-- Card 1 -->
+    <div class="single-card-container">
+      <div class="card">
+        <h3 class="p-2 mt-2 text-center"> # SCARA ROBOT YAMAHA</h3>
+        <div class="indicators-section">
+          
+          <div *ngFor="let item of scaraRobotLabel" class="indicator-item" [class.true]="item.value" [class.false]="!item.value">
+            <div class="indicator-content">
+              <div class="indicator-title">{{ item.title }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-section">
+          <button *ngFor="let item of scaraRobotButtons" class="toggle-btn" (click)="toggleItemValue(item)">
+            {{ item.title }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="single-card-container">
+        <div class="card">
+            <h3 class="p-2 mt-2 text-center"> #LCMR YAMAHA(PALLET-1)</h3>
+          <div class="indicators-section">
+            <div *ngFor="let item of lcmrPallet1Label" class="indicator-item" [class.true]="item.value" [class.false]="!item.value">
+              <div class="indicator-content">
+                <div class="indicator-title">{{ item.title }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="buttons-section">
+            <button *ngFor="let item of lcmrPallet1Buttons" class="toggle-btn" (click)="toggleItemValue(item)">
+              {{ item.title }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="single-card-container">
+        <div class="card">
+            <h3 class="p-2 mt-2 text-center"> #LCMR YAMAHA(PALLET-2)</h3>
+          <div class="indicators-section">
+            <div *ngFor="let item of lcmrPallet2Label" class="indicator-item" [class.true]="item.value" [class.false]="!item.value">
+              <div class="indicator-content">
+                <div class="indicator-title">{{ item.title }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="buttons-section">
+            <button *ngFor="let item of lcmrPallet2Buttons" class="toggle-btn" (click)="toggleItemValue(item)">
+              {{ item.title }}
+            </button>
+          </div>
+        </div>
+      </div>
+  
+
+
+  </div>
+
+</div>

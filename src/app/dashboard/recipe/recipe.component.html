@@ -1,0 +1,135 @@
+<div class="data-manager-container">
+    <!-- Header Section -->
+    <div class="header">
+      <h2><i class="fas fa-cogs"></i> PLC Data Manager</h2>
+      <p class="subtitle">Manage your industrial equipment configurations</p>
+    </div>
+  
+    <!-- Category Selection Card -->
+    <div class="card selection-card">
+      <div class="card-body">
+        <h5 class="card-title">Select Configuration</h5>
+        
+        <!-- Search and Dropdown -->
+        <div class="search-dropdown" [class.open]="isDropdownOpen">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" [(ngModel)]="searchTerm" (input)="filterCategories()" 
+                   placeholder="Search configurations..." (focus)="isDropdownOpen = true">
+            <button class="dropdown-toggle" (click)="toggleDropdown()">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+          
+          <div class="dropdown-menu" *ngIf="isDropdownOpen">
+            <div class="dropdown-items">
+              <div *ngFor="let category of filteredCategories" class="dropdown-item" 
+                   (click)="onCategorySelect(category)">
+                <span class="color-badge" [style.background]="category.color"></span>
+                {{category.name}}
+              </div>
+              <div *ngIf="filteredCategories.length === 0" class="dropdown-item add-new" 
+                   (click)="openAddNewModal(addNewModal)">
+                <i class="fas fa-plus-circle"></i> Create new configuration
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Selections -->
+        <div class="recent-selections" *ngIf="recentSelections.length > 0">
+          <h6>Recently Used:</h6>
+          <div class="recent-items">
+            <div *ngFor="let recent of recentSelections" class="recent-item" 
+                 [style.border-left-color]="recent.color" (click)="onCategorySelect(recent)">
+              {{recent.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Configuration Form Card -->
+    <div class="card form-card" *ngIf="selectedCategory">
+      <div class="card-header" [style.background]="selectedCategory.color">
+        <h5>
+          <span class="color-badge" [style.background]="selectedCategory.color"></span>
+          {{selectedCategory.name}} Configuration
+        </h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="dataForm">
+          <div class="form-grid">
+            <div class="form-group" *ngFor="let field of [1,2,3,4,5,6]; let i = index">
+              <label>Parameter {{field}}</label>
+              <input type="text" class="form-control" [formControlName]="'field' + field" 
+                     placeholder="Enter value...">
+            </div>
+          </div>
+  
+          <div class="action-buttons">
+            <button type="button" class="btn btn-save" (click)="save()">
+              <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-save-as" (click)="saveAs()">
+              <i class="fas fa-copy"></i> Save As
+            </button>
+            <button type="button" class="btn btn-delete" (click)="deleteCategory()">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+            <button type="button" class="btn btn-plc" (click)="pushToPLC()">
+              <i class="fas fa-paper-plane"></i> Push to PLC
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!selectedCategory">
+      <div class="empty-content">
+        <i class="fas fa-sliders-h"></i>
+        <h4>No Configuration Selected</h4>
+        <p>Select an existing configuration from the dropdown or create a new one</p>
+        <button class="btn btn-primary" (click)="openAddNewModal(addNewModal)">
+          <i class="fas fa-plus"></i> Create New Configuration
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add New Configuration Modal -->
+  <ng-template #addNewModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Create New Configuration</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="newCategoryForm">
+        <div class="form-group">
+          <label>Configuration Name</label>
+          <input type="text" class="form-control" formControlName="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Color Tag</label>
+          <input type="color" class="form-control color-picker" formControlName="color">
+        </div>
+        
+        <h6 class="mt-4">Initial Parameters</h6>
+        <div class="form-grid">
+          <div class="form-group" *ngFor="let field of [1,2,3,4,5,6]">
+            <label>Parameter {{field}}</label>
+            <input type="text" class="form-control" [formControlName]="'field' + field">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('save')" 
+              [disabled]="!newCategoryForm.valid">Create Configuration</button>
+    </div>
+  </ng-template>

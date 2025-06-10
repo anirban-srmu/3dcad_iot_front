@@ -1,0 +1,57 @@
+
+<div class="machine-home-container"  >
+    <!-- <div class="machine-header">
+      <h2>MACHINE CONTROL PANEL</h2>
+    </div> -->
+ 
+
+    <div class="machine-controls" *ngIf="showhome">
+        <div class="control-row">
+          <button class="control-btn startup-btn" (click)="toggleAutoMode('startup')">
+            <div class="btn-icon">
+              <i class="fas fa-power-off"></i>
+            </div>
+            <div class="btn-label">STARTUP</div>
+            <div class="btn-status-indicator"></div>
+          </button>
+          
+          <button class="control-btn automode-btn" (click)="toggleAutoMode('automode')">
+            <div class="btn-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="btn-label">AUTO MODE</div>
+            <div class="btn-status-indicator"></div>
+          </button>
+        </div>
+      </div>
+    
+      <div class="machine-status" *ngIf="showhome">
+        <div class="status-indicator online">
+          <i class="fas fa-circle"></i>
+          <span>MACHINE ONLINE</span>
+        </div>
+      </div>
+
+
+<div  *ngIf="showAutoMode">
+    <div class="mb-3">
+        <button class="btn btn-dark" (click)="goBackHome()">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+      </div>
+    <app-auto-mode ></app-auto-mode>
+</div>
+
+<div  *ngIf="showstartMode">
+  <div class="mb-3">
+      <button class="btn btn-dark" (click)="goBackHome()">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+    </div>
+  <app-start-up></app-start-up>
+</div>
+
+</div>
+
+
+

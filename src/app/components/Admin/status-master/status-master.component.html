@@ -1,0 +1,80 @@
+<app-card [options]="false">
+  <div class="mt-5">
+    <app-toast-message></app-toast-message>
+    <div class="text-end">
+      <button type="button" class="btn custom-btn" (click)="addRow()" [disabled]="currentlyEditingIndex !== -1">
+        <i class="fas fa-plus"></i> Add Status
+    </button>    
+    </div>
+
+    <div class="table-wrapper">
+      <table class="table table-bordered mt-2">
+        <thead>
+          <tr class="inner-shadow">
+            <th class="sl-no">SL No</th>
+            <th class="status-name">Status Name</th>
+            <th class="action">Action</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of paginatedRows; let i = index">
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td>
+              <input *ngIf="row.isEditing" type="text" [(ngModel)]="row.statusName" (input)="sanitizeInput(row)" class="form-control">
+              <span *ngIf="!row.isEditing">{{ row.statusName }}</span>
+            </td>
+            <td>
+              <span class="mx-2 check-icon" *ngIf="row.isEditing" (click)="saveRow(row)">
+                <i class="fas fa-check fa-lg"></i>
+              </span>              
+              <span class="mx-2" *ngIf="!row.isEditing && currentlyEditingIndex === -1"               [style.color]="'rgb(86, 86, 86)'" 
+              [style.cursor]="row.statusName === 'Ordered' ? 'not-allowed' : 'pointer'" 
+              (click)="row.statusName !== 'Ordered' && editRow(row)"
+                >
+                <i class="fas fa-pen fa-lg"></i>
+              </span>
+              <span 
+              class="mx-2" 
+              *ngIf="!row.isEditing" 
+              [style.color]="'rgb(86, 86, 86)'" 
+              [style.cursor]="row.statusName === 'Ordered' ? 'not-allowed' : 'pointer'" 
+              (click)="row.statusName !== 'Ordered' && deleteRow(row.id)">
+              <i class="fas fa-trash fa-lg" 
+                 [style.color]="row.statusName === 'Ordered' ? 'gray' : '#072f5f'">
+              </i>
+            </span>            
+            <span class="mx-2 cancel-icon" *ngIf="row.isEditing" (click)="cancelEdit(row, i)">
+              <i class="fas fa-times fa-lg icon-color"></i>
+            </span>            
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-end mt-3">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="changePage(currentPage - 1)"
+              [disabled]="currentPage === 1">Previous</button>
+          </li>
+          <li class="page-item" [class.active]="page === currentPage"
+            *ngFor="let page of [].constructor(totalPages); let i = index">
+            <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="changePage(currentPage + 1)"
+              [disabled]="currentPage === totalPages">Next</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</app-card>
+<div class=" blurry-background ">
+  <div class="footer">
+    <div class="footer-content">
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<!-- Counts Display -->
+
+<div class="row text-center mb-3">
+    <div class="col-md-3">
+      <div class="card bg-dark text-light border-light">
+        <div class="card-body">
+          <i class="fas fa-check-circle fa-2x text-success"></i>
+          <h5 class="card-title mt-2">OK</h5>
+          <p class="card-text">{{ okCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-dark text-light border-light">
+        <div class="card-body">
+          <i class="fas fa-times-circle fa-2x text-danger"></i>
+          <h5 class="card-title mt-2">NG</h5>
+          <p class="card-text">{{ ngCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-dark text-light border-light">
+        <div class="card-body">
+          <i class="fas fa-exclamation-circle fa-2x text-warning"></i>
+          <h5 class="card-title mt-2">NR</h5>
+          <p class="card-text">{{ nrCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-dark text-light border-light">
+        <div class="card-body">
+          <i class="fas fa-question-circle fa-2x text-info"></i>
+          <h5 class="card-title mt-2">SK</h5>
+          <p class="card-text">{{ skippedCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Alarm and Machine Messages -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <div class="alert alert-dark" role="alert">
+        <strong>Alarm:</strong> {{ alaram }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="alert alert-dark" role="alert">
+        <strong>Machine:</strong> {{ machineMessage }}
+      </div>
+    </div>
+  </div>
+ <!-- Current Pair Table -->
+<div class="table-responsive mb-3">
+    <table class="table table-bordered table-sm text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Barcode</th>
+          <th *ngFor="let stage of stageHeaders">{{ stage }}</th>
+        </tr>
+      </thead>
+      <tbody class="current-pair">
+        <tr>
+          <td>{{ barcode_1 }}</td>
+          <td *ngFor="let color of currentPair.barcode1Stages" [ngClass]="getStageClass(color)">
+            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+          </td>
+        </tr>
+        <tr>
+          <td>{{ barcode_1 }}</td>
+          <td *ngFor="let color of currentPair.barcode2Stages" [ngClass]="getStageClass(color)">
+            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+          </td>
+        </tr>
+        <tr>
+          <td>{{ barcode_3 }}</td>
+          <td *ngFor="let color of currentPair.barcode1Stages" [ngClass]="getStageClass(color)">
+            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+          </td>
+        </tr>
+        <tr>
+          <td>{{ barcode_4 }}</td>
+          <td *ngFor="let color of currentPair.barcode1Stages" [ngClass]="getStageClass(color)">
+            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- History Pairs Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-sm text-center align-middle">
+
+        <ng-container *ngFor="let pair of barcodePairs; let i = index">
+            <tbody class="history-pair">
+              <tr>
+                <td>{{ pair.barcode1 }}</td>
+                <td *ngFor="let color of pair.barcode1Stages" [ngClass]="getStageClass(color)">
+                  <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ pair.barcode2 }}</td>
+                <td *ngFor="let color of pair.barcode2Stages" [ngClass]="getStageClass(color)">
+                  <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </ng-container>
+    </table>
+  </div>
+  

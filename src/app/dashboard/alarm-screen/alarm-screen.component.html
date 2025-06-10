@@ -1,0 +1,67 @@
+<div class="alarm-container">
+
+    <div class="alarm-header">
+      <h2>Alarm Monitoring</h2>
+      <div class="alarm-controls">
+        <div class="filter-group">
+          <div class="date-filter">
+            <label>Start Date</label>
+            <input type="date" [(ngModel)]="startDate" class="date-input">
+          </div>
+          <div class="date-filter">
+            <label>End Date</label>
+            <input type="date" [(ngModel)]="endDate" class="date-input">
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-filter" (click)="applyFilters()">
+            <i class="fas fa-filter"></i> Filter
+          </button>
+          <button class="btn btn-reset" (click)="resetFilters()">
+            <i class="fas fa-undo"></i> Reset
+          </button>
+          <button class="btn btn-export" (click)="exportData()">
+            <i class="fas fa-download"></i> Export
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="alarm-table-container">
+      <table class="alarm-table">
+        <thead>
+          <tr>
+            <th (click)="sortTable('date')" [class.active]="sortColumn === 'date'">
+              Date <span class="sort-icon">{{getSortIcon('date')}}</span>
+            </th>
+            <th (click)="sortTable('time')" [class.active]="sortColumn === 'time'">
+              Time <span class="sort-icon">{{getSortIcon('time')}}</span>
+            </th>
+            <th (click)="sortTable('alarmCode')" [class.active]="sortColumn === 'alarmCode'">
+              Alarm Code <span class="sort-icon">{{getSortIcon('alarmCode')}}</span>
+            </th>
+            <th (click)="sortTable('message')" [class.active]="sortColumn === 'message'">
+              Message <span class="sort-icon">{{getSortIcon('message')}}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let alarm of filteredAlarms">
+            <td>{{alarm.date}}</td>
+            <td>{{alarm.time}}</td>
+            <td>
+              <span class="alarm-code" [class.critical]="isCritical(alarm.alarmCode)">
+                {{alarm.alarmCode}}
+              </span>
+            </td>
+            <td>{{alarm.message}}</td>
+          </tr>
+          <tr *ngIf="filteredAlarms.length === 0">
+            <td colspan="4" class="no-data">
+              <i class="fas fa-info-circle"></i> No alarms found matching your criteria
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

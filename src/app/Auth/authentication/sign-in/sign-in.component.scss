@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  /* Center items horizontally */
+  align-items: center;
+  height: 100vh;
+  padding: 0 120px;
+  /* Add padding to the sides for mobile */
+  z-index: 100003;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 500px;
+  /* Limit width for tablet and mobile */
+}
+
+.custom-card {
+  width: 100%;
+  /* Make the card responsive */
+  max-width: 550px;
+  /* Set a maximum width for larger screens */
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  /* Increased padding for better spacing */
+  animation: fadeIn 0.5s ease-in-out;
+  z-index: 100003;
+}
+
+.card-title {
+  color: #000000;
+  text-align: center;
+  /* Center the card title */
+}
+
+.custom-input .custom-icon {
+  background-color: #000000;
+  color: #fff;
+  padding: 0 15px;
+  /* Adjust padding */
+  border-radius: 4px 0 0 4px;
+}
+
+.custom-input .form-control {
+  border-radius: 0 4px 4px 0;
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+.custom-btn {
+  background-color: #000000;
+  border: none;
+  padding: 12px;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s;
+  width: 100%;
+  /* Make button full width */
+}
+
+.custom-btn:hover {
+  background-color: #000000;
+}
+
+/* Footer settings */
+.footer {
+  width: 100%;
+  height: 450px;
+  position: fixed;
+  bottom: 0;
+  z-index: 100001;
+  /* Ensure footer is above the blurred background but below the form */
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  /* Align items to the right */
+  align-items: center;
+  padding: 20px 0;
+  overflow: hidden;
+  /* Prevent overflow from the pseudo-element */
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* Align the image to the right */
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/footerflowers.avif');
+  background-size: contain;
+  /* Make the image fit within the container */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-position: right;
+  /* Align the background image to the right */
+  transform: scaleX(-1);
+  /* Mirror the image horizontally */
+  z-index: -1;
+  /* Place it behind the footer content */
+}
+
+.footer-content {
+  text-align: center;
+  /* Center the content in the footer */
+}
+
+
+.blurry-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  /* Remove any margin */
+  padding: 0;
+  /* Remove any padding */
+  z-index: 100001;
+  /* Keep it below footer and form */
+  background: linear-gradient(to bottom left, #ffffff, #000000);
+  /* For older browsers */
+  background: -webkit-linear-gradient(to bottom left, #ffffff, #000000);
+  background: -moz-linear-gradient(to bottom left, #ffffff, #000000);
+  background: -o-linear-gradient(to bottom left, #ffffff, #000000);
+  background: -ms-linear-gradient(to bottom left, #ffffff, #000000);
+  /* Optional: Add fallback background color */
+  background-color: #000000;
+  /* Fallback color if gradients are not supported */
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries for Tablet and Mobile Adjustments */
+@media screen and (max-width: 768px) {
+  .login-container {
+    padding: 0 15px;
+    /* Add padding for smaller devices */
+  }
+
+  .login-form-container {
+    max-width: 90%;
+    /* Allow for more flexibility on smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .custom-card {
+    padding: 15px;
+    /* Adjust padding for smaller screens */
+  }
+
+  .card-title {
+    font-size: 20px;
+    /* Adjust font size for smaller screens */
+  }
+
+  .custom-btn {
+    font-size: 16px;
+    /* Increase button font size for better touch targets */
+  }
+}
+
+
+.forgot-password-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+.captcha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.captcha-display {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.captcha-text {
+  letter-spacing: 8px;
+  /* Adds spacing between characters */
+  user-select: none;
+  /* Prevents text selection */
+  pointer-events: none;
+  /* Disables interactions like right-click */
+  font-weight: bold;
+  /* Makes the text strong */
+  font-size: 18px;
+  /* Adjust font size */
+  color: #ffffff;
+  /* Text color for better visibility */
+  background: linear-gradient(90deg, #f8f9fa, #000000);
+  /* Subtle gradient */
+  padding: 2px 8px;
+  /* Adds spacing around the text */
+  border-radius: 4px;
+  /* Rounds the edges */
+  display: inline-block;
+  /* Keeps it inline */
+}
+
+.captcha-refresh {
+  font-size: 12px;
+  color: #000000;
+  text-decoration: none;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.captcha-refresh:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.captcha-input {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #000000;
+}
+
+////// after inline
+
+.taneira-logo {
+  width: 30%;
+  height: auto;
+}

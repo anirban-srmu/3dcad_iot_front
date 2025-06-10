@@ -1,0 +1,123 @@
+
+
+<div class="dashboard-container">
+  <!-- Fixed Header with Logo -->
+  <app-toast-message></app-toast-message>
+  <header class="dashboard-header">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1 class="dashboard-title">
+            <i class="fas fa-industry me-2"></i>
+            MACHINE DASHBOARD
+          </h1>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+          <img src="assets/3DCAD-new-logo.png" alt="Company Logo" class="dashboard-logo">
+          <button class="btn btn-link text-decoration-none me-3" (click)="performLogout()" title="Logout">
+            <i class="fas fa-sign-out-alt fa-lg text-dark fa-3x"></i> <!-- Added text-dark class -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="dashboard-content">
+    <app-home-screen *ngIf="activeScreen === 'home'"></app-home-screen>
+    <app-io-status *ngIf="activeScreen === 'io-status'"></app-io-status>
+    <app-auto-mode *ngIf="activeScreen === 'auto-mode'"></app-auto-mode>
+    <app-sensor-status *ngIf="activeScreen === 'sensor-status'"></app-sensor-status>
+    <app-manual-mode *ngIf="activeScreen === 'manual-mode'"></app-manual-mode>
+    <app-robot-status *ngIf="activeScreen === 'robot-status'"></app-robot-status>
+    <app-alarm-screen *ngIf="activeScreen === 'alarm-screen'"></app-alarm-screen>
+    <app-recipe *ngIf="activeScreen === 'recipe'"></app-recipe>
+    <app-machine-settings *ngIf="activeScreen === 'settings'"></app-machine-settings>
+    <app-machine-oee *ngIf="activeScreen === 'oee'"></app-machine-oee>
+  </main>
+
+  <!-- Enhanced Bottom Navigation Menu -->
+  <nav class="dashboard-menu">
+    <div class="container-fluid h-100">
+      <div class="row h-100 g-0 text-center">
+        <!-- Home -->
+        <div class="col menu-item" [class.active]="activeScreen === 'home'" (click)="showScreen('home')">
+          <div class="menu-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="menu-label">HOME SCREEN</div>
+        </div>
+        
+        <!-- I/O Status -->
+        <div class="col menu-item" [class.active]="activeScreen === 'io-status'" (click)="showScreen('io-status')">
+          <div class="menu-icon">
+            <i class="fas fa-plug"></i>
+          </div>
+          <div class="menu-label">I/O STATUS</div>
+        </div>
+        
+        <!-- Auto Mode -->
+        <!-- <div class="col menu-item" [class.active]="activeScreen === 'auto-mode'" (click)="showScreen('auto-mode')">
+          <div class="menu-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="menu-label">AUTO MODE</div>
+        </div>
+         -->
+        <!-- Sensor Status -->
+        <div class="col menu-item" [class.active]="activeScreen === 'sensor-status'" (click)="showScreen('sensor-status')">
+          <div class="menu-icon">
+        
+            <i class="fas fa-microchip"></i>
+          </div>
+          <div class="menu-label">SENSORS</div>
+        </div>
+        
+        <!-- Manual Mode -->
+        <div class="col menu-item" [class.active]="activeScreen === 'manual-mode'" (click)="showScreen('manual-mode')">
+          <div class="menu-icon">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <div class="menu-label">MANUAL</div>
+        </div>
+        
+        <!-- Robot Status -->
+        <div class="col menu-item" [class.active]="activeScreen === 'robot-status'" (click)="showScreen('robot-status')">
+          <div class="menu-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="menu-label">ROBOT</div>
+        </div>
+        
+        <!-- Alarm Screen -->
+        <div class="col menu-item" [class.active]="activeScreen === 'alarm-screen'" (click)="showScreen('alarm-screen')">
+          <div class="menu-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <div class="menu-label">ALARMS</div>
+        </div>
+        
+        <!-- Recipe -->
+        <div class="col menu-item" [class.active]="activeScreen === 'recipe'" (click)="showScreen('recipe')">
+          <div class="menu-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <div class="menu-label">RECIPE</div>
+        </div>
+        <!-- Settings -->
+        <div class="col menu-item" [class.active]="activeScreen === 'oee'" (click)="showScreen('oee')">
+          <div class="menu-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="menu-label">OEE</div>
+        </div>
+        <div class="col menu-item" [class.active]="activeScreen === 'settings'" (click)="showScreen('settings')">
+          <div class="menu-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="menu-label">Settings</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

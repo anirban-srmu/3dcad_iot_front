@@ -1,0 +1,19 @@
+.toast-wrapper {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    padding: 1rem;
+    z-index: 200010;
+
+
+  }
+
+  .toast-header {
+    background-color: #072f5f;
+    color: white;
+  }
+  
+  .toast-wrapper .btn-close {
+    color: white !important;
+  }
+  

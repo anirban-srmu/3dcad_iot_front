@@ -1,0 +1,177 @@
+.machine-home-container {
+    min-height: 80vh; /* Minimum height */
+    height: auto; /* Will expand beyond min-height if needed */
+    background-color: rgba(76, 76, 76, 0.8); /* Semi-transparent for better visibility */
+    color: #e8ebf0; /* --machine-light */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #3a414d; /* --machine-border */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  
+    .master-data-header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      
+      h1 {
+        color: #e8ebf0;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+      
+      p {
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+    }
+  
+    .master-data-card {
+      background-color: #2d2d2d;
+      border: 1px solid #3a414d;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+  
+      .card-header {
+        background-color: #1f1f1f;
+        border-bottom: 1px solid #3a414d;
+        padding: 0;
+  
+        .nav-tabs {
+          border-bottom: none;
+          padding: 0 1rem;
+  
+          .nav-link {
+            color: #adb5bd;
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 0.5rem;
+  
+            &:hover {
+              color: #e8ebf0;
+              background-color: rgba(255, 255, 255, 0.05);
+              border-bottom-color: rgba(74, 137, 220, 0.3);
+            }
+  
+            &.active {
+              color: #e8ebf0;
+              background-color: rgba(255, 255, 255, 0.08);
+              border-bottom-color: #4a89dc;
+            }
+  
+            i {
+              font-size: 0.9em;
+            }
+          }
+        }
+      }
+  
+      .card-body {
+        padding: 1.5rem;
+        flex-grow: 1;
+        background-color: #333333;
+      }
+    }
+  
+    // Form styling
+    .form-control, .form-select {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #e8ebf0;
+      border: 1px solid #3a414d;
+      transition: all 0.3s ease;
+  
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.12);
+        color: #e8ebf0;
+        border-color: #4a89dc;
+        box-shadow: 0 0 0 0.25rem rgba(74, 137, 220, 0.25);
+      }
+  
+      &::placeholder {
+        color: #6c757d;
+      }
+    }
+  
+    // Table styling
+    .table {
+      color: #e8ebf0;
+      background-color: #2d2d2d;
+  
+      th {
+        background-color: #1f1f1f;
+        border-bottom: 2px solid #3a414d;
+        font-weight: 500;
+      }
+  
+      td {
+        border-top: 1px solid #3a414d;
+      }
+  
+      tr:hover {
+        background-color: rgba(74, 137, 220, 0.1);
+      }
+    }
+  
+    // Button styling
+    .btn {
+      border-radius: 0.25rem;
+      padding: 0.5rem 1.25rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+  
+      &-primary {
+        background-color: #4a89dc;
+        border-color: #4a89dc;
+  
+        &:hover {
+          background-color: #3a6cb5;
+          border-color: #3a6cb5;
+        }
+      }
+  
+      &-secondary {
+        background-color: #3a414d;
+        border-color: #3a414d;
+  
+        &:hover {
+          background-color: #2d3238;
+          border-color: #2d3238;
+        }
+      }
+  
+      &-outline-primary {
+        color: #4a89dc;
+        border-color: #4a89dc;
+  
+        &:hover {
+          background-color: rgba(74, 137, 220, 0.1);
+        }
+      }
+    }
+  
+    // Status indicators
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+  
+      &-active {
+        background-color: #4caf50;
+      }
+  
+      &-inactive {
+        background-color: #f44336;
+      }
+    }
+  }

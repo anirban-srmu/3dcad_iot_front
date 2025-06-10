@@ -1,0 +1,162 @@
+/* Machine UI Theme */
+/* Machine UI Theme */
+:root {
+    --machine-dark: #1a1d23;
+    --machine-dark-accent: #2a2f3a;
+    --machine-light: #e8ebf0;
+    --machine-primary: #3a7bd5;
+    --machine-success: #00d2a0;
+    --machine-border: #3a414d;
+}
+
+.machine-home-container {
+  min-height: 80vh; /* Minimum height */
+  height: auto; /* Will expand beyond min-height if needed */
+  background-color: rgba(76, 76, 76, 0.8); /* Semi-transparent for better visibility */
+  color: #e8ebf0; /* --machine-light */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #3a414d; /* --machine-border */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+  .machine-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .machine-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .machine-title i {
+    font-size: 2.5rem;
+    color: #3a7bd5; /* --machine-primary */
+  }
+  
+  .machine-title h2 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+  }
+  
+  .machine-controls {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .control-row {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
+  }
+  
+  .control-btn {
+    flex: 1;
+    min-width: 250px;
+    background: #2a2f3a; /* --machine-dark-accent */
+    border: 2px solid #3a414d; /* --machine-border */
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    color: #e8ebf0; /* --machine-light */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+  }
+  
+  .control-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  .control-btn:active {
+    transform: translateY(0);
+  }
+  
+  .btn-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #e8ebf0; /* --machine-light */
+  }
+  
+  .btn-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn-status-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #555;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+  }
+  
+  .startup-btn {
+    border-top: 4px solid #131313; /* --machine-primary */
+  }
+  
+  .startup-btn:hover {
+    border-color: lighten(#ffffff, 10%);
+  }
+  
+  .automode-btn {
+    border-top: 4px solid #080808; /* --machine-success */
+  }
+  
+  .automode-btn:hover {
+    border-color: lighten(#f8f8f8, 50%);
+  }
+  
+  .machine-status {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 2rem;
+  }
+  
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgb(11, 101, 80);
+  }
+  
+  .status-indicator i {
+    font-size: 0.6rem;
+  }
+  
+  .status-indicator.online i {
+    color: #ffffff; /* --machine-success */
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  

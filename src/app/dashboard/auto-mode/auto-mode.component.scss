@@ -1,0 +1,58 @@
+/* Make table fit smaller screens better */
+
+.machine-home-container {
+    height: 79vh;
+    background-color: rgba(76, 76, 76, 0.8); /* Semi-transparent for better visibility */
+    color: #e8ebf0; /* --machine-light */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #3a414d; /* --machine-border */
+    border-radius: 10px; /* --machine-border */
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
+  /* Smaller font for table */
+  table.table {
+    table-layout: fixed; /* Fix column widths */
+    width: 100%; /* full width but fixed layout */
+    font-size: 0.8rem; /* smaller font */
+  }
+  
+  /* Reduce cell padding */
+  table.table th,
+  table.table td {
+    padding: 0.25rem 0.4rem; /* smaller padding */
+    white-space: nowrap; /* prevent text wrapping */
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  /* Optional: truncate stage header text */
+  table.table thead th {
+    max-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  /* Icon size smaller */
+  table.table i {
+    font-size: 0.9rem;
+  }
+  
+  .current-pair {
+    background-color: #d4f8e8;
+    border-color: #00a153;
+    box-shadow:
+      0 0 10px 2px rgba(0, 161, 83, 0.7),
+      inset 0 0 8px 2px rgba(0, 161, 83, 0.4);
+    font-weight: 700;
+    color: #064d29;
+  }
+  

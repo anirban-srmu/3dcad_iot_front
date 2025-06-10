@@ -1,0 +1,311 @@
+/* Increase the size of the checkboxes */
+.form-check-input.form-check-lg {
+    width: 1.5em;
+    height: 1.5em;
+  }
+  
+
+  .role-select {
+    position: relative;
+  }
+  
+  .form-select {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 0.25rem; /* Rounded corners */
+    padding: 0.375rem 0.75rem; /* Padding */
+    transition: border-color 0.2s ease-in-out; /* Transition effect */
+  }
+  
+  .form-select:focus {
+    border-color: #80bdff; /* Blue border on focus */
+    outline: 0; /* Remove outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Box shadow effect */
+  }
+  
+  .form-select option {
+    padding: 0.5rem; /* Padding for options */
+  }
+  /* Main table */
+.table {
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent white for glass effect */
+  backdrop-filter: blur(10px); /* Glassy effect */
+
+}
+
+/* Sub-table styles */
+.sub-table {
+  margin: 10px 0; /* Space above and below the sub-table */
+  padding-left: 15px; /* Left padding */
+  padding-right: 15px; /* Right padding */
+  background: rgba(255, 255, 255, 0.5); /* More transparent background for sub-table */
+}
+
+// after inline css
+
+.switch-container {
+  vertical-align: middle;
+}
+
+.edit-icon {
+  color: #072f5f;
+  cursor: pointer;
+}
+
+.cancel-icon {
+  color: rgb(86, 86, 86);
+  cursor: pointer;
+}
+
+.cancel-icon i {
+  color: #072f5f;
+}
+
+.lock-icon {
+  color: rgb(86, 86, 86);
+  cursor: pointer;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+
+
+.my-orders-heading {
+
+  font-weight: bold; /* Make the text bold */
+  color: #623c21; /* Use a color that matches the theme */
+
+}
+
+/* Hover effect */
+.my-orders-heading:hover {
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Header styles */
+.table thead th {
+  background-color: #b78053; /* Header background color */
+  color: #ffffff; /* White text color */
+  font-weight: bold; /* Bold header text */
+}
+
+/* Sub-table specific border and background */
+
+
+
+/* Additional styles for hover effects */
+.table tbody tr:hover {
+  background-color: rgba(255, 237, 237, 0.5); /* Light highlight on hover */
+}
+
+/* Rounded corners for each table cell */
+
+/* Optional: Add rounded corners to the first and last cells in each row */
+.table tbody tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.table tbody tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.footer {
+  width: 100%; /* Full width */
+  height: 350px; /* Adjust the height if needed */
+  background-image: url('/assets/footerflowers.avif'); /* Background image for footer */
+  background-size: contain; /* Make the image fit within the container */
+  background-position: right; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  padding: 20px 0; /* Vertical padding for the footer */
+  display: flex; /* Flexbox for alignment */
+  justify-content: right; /* Center the content horizontally */
+  align-items: right; /* Center the content vertically */
+  position: fixed; /* Fix the footer at the bottom of the page */
+  bottom: 0; /* Position at the bottom */
+  z-index: -1000; /* Ensure it stays above other content */
+  color: white; /* Text color for contrast */
+}
+
+
+.footer-content {
+  text-align: center;
+}
+
+.continue-shopping-btn {
+  background-color: #b78053;
+  color: white;
+  padding: 12px 20px; /* Spacing for the button */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Button text size */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.continue-shopping-btn:hover {
+  background-color: #8c5a3d; /* Darker color on hover */
+}
+
+.blurry-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: -10000;
+
+  background: linear-gradient(to bottom, 
+  rgba(255, 255, 255, 1) 0%,  /* Pure white at the top */
+  rgba(249, 241, 244, 0.9) 10%, /* Very light pink near the top */
+  rgba(254, 247, 250, 0.8) 40%, /* Light pink around middle */
+  rgba(248, 207, 213, 0.9) 100%); /* Deeper light pink at the bottom */
+  
+  /* For older browsers */
+  background: -webkit-linear-gradient(to bottom, 
+  rgba(255, 255, 255, 1) 0%,  /* Pure white at the top */
+  rgba(249, 241, 244, 0.9) 10%, /* Very light pink near the top */
+  rgba(254, 247, 250, 0.8) 40%, /* Light pink around middle */
+  rgba(248, 207, 213, 0.9) 100%); /* Deeper light pink at the bottom */
+  background: -moz-linear-gradient(to bottom, 
+  rgba(255, 255, 255, 1) 0%,  /* Pure white at the top */
+  rgba(249, 241, 244, 0.9) 10%, /* Very light pink near the top */
+  rgba(254, 247, 250, 0.8) 40%, /* Light pink around middle */
+  rgba(248, 207, 213, 0.9) 100%); /* Deeper light pink at the bottom */
+  background: -o-linear-gradient(to bottom, 
+  rgba(255, 255, 255, 1) 0%,  /* Pure white at the top */
+  rgba(249, 241, 244, 0.9) 10%, /* Very light pink near the top */
+  rgba(254, 247, 250, 0.8) 40%, /* Light pink around middle */
+  rgba(248, 207, 213, 0.9) 100%); /* Deeper light pink at the bottom */
+  background: -ms-linear-gradient(to bottom, 
+  rgba(255, 255, 255, 1) 0%,  /* Pure white at the top */
+  rgba(249, 241, 244, 0.9) 10%, /* Very light pink near the top */
+  rgba(254, 247, 250, 0.8) 40%, /* Light pink around middle */
+  rgba(248, 207, 213, 0.9) 100%); /* Deeper light pink at the bottom */
+  
+  background-color: rgba(255, 240, 245, 1); /* Fallback color */
+}
+
+
+/* Style for the switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+}
+
+/* Hide the default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Style the slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+/* The slider (circle) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* When the checkbox is checked, move the slider */
+input:checked + .slider {
+  background-color: #e60f6c;
+}
+
+/* When the checkbox is checked, move the circle */
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+input:disabled :checked + .slider {
+  background-color: #e60f6c;  
+  cursor: not-allowed;
+}
+
+input:disabled:checked + .slider:before {
+ /* Move the slider even when disabled */
+  background-color: #ffffff;     /* Keep the circle color when checked */
+}
+/* Disabled state: light gray circle */
+input:disabled + .slider:before {
+  background-color: #b0b0b0;
+}
+
+
+
+.custom-modal-pink {
+  background-color: #ffffff; /* Light pink background */
+  color: #4a4a4a; /* Darker text for contrast */
+}
+
+.custom-modal-pink .modal-header {
+  background-color: #fcfcfc; /* Medium pink for header */
+  border-color: #da2689;
+  color: white;
+}
+
+.custom-modal-pink .btn-close {
+  color: #ffffff; /* Slightly darker pink for close button */
+}
+
+.custom-modal-pink .btn-primary {
+  background-color: #da2689; /* Pink primary button */
+  border-color: #da2689;
+}
+
+.custom-modal-pink .btn-primary:hover {
+  background-color: #da2689; /* Darker pink on hover */
+}
+
+
+
+.logo-image {
+  width: 30%;
+  height: auto;
+}
+
+.sl-no-header {
+  width: 5%;
+}
+
+.custom-button {
+  border-color: #072f5f;
+  color: #072f5f;
+  border-radius: 0%;
+}
+.action{
+  width: 200px;
+}
+.role{
+  width: 200px;
+}
+.store{
+  width: 200px;
+}

@@ -1,0 +1,55 @@
+<div class="login-background">
+  <div class="login-container">
+    <app-toast-message></app-toast-message>
+    <div class="login-form-container">
+      <div class="card custom-card">
+        <div class="card-body">
+          <!-- Center the logo -->
+          <div class="text-center">
+            <img src="/assets/3DCAD-new-logo.png" class="taneira-logo" alt="Taneira Logo" loading="lazy">
+          </div>
+          <div class="text-center mt-2">
+            <!-- Login Form -->
+            <form [formGroup]="loginForm" *ngIf="currentForm === 'login'" (ngSubmit)="submitLoginForm()">
+              <div class="input-group mb-3 custom-input">
+                <span class="input-group-text custom-icon">
+                  <i class="feather icon-user fa-1x"></i>
+                </span>
+                <input type="text" formControlName="username" class="form-control form-control-sm"
+                  placeholder="User Name" aria-label="User Name">
+              </div>
+              <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched"
+                class="text-danger small">
+                Username is required.
+              </div>
+              <div class="input-group mb-3 custom-input">
+                <span class="input-group-text custom-icon">
+                  <i class="feather icon-lock fa-1x"></i>
+                </span>
+                <input type="password" formControlName="password" class="form-control form-control-sm"
+                  placeholder="Password" aria-label="Password">
+              </div>
+              <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched"
+                class="text-danger small">
+                Password is required.
+              </div>
+              <button type="submit" class="btn custom-btn w-100 mb-3" [disabled]="loginForm.invalid ">
+                <i *ngIf="spinner" class="feather icon-loader spinner"></i>
+                <i *ngIf="!spinner" class="feather icon-log-in"></i>
+                Sign In
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="blurry-background">
+  <div class="footer">
+    <div class="footer-content text-center">
+      <!-- © 2024 Your Company. All rights reserved. -->
+    </div>
+  </div>
+</div>
