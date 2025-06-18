@@ -1,1 +1,39 @@
-<p>alarm-master works!</p>
+<div class="table-container">
+    <button (click)="addNewRow()">➕ Add New</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of people">
+          <td>
+            <ng-container *ngIf="person.isNew; else showName">
+              <input [(ngModel)]="person.name" placeholder="Enter name" />
+            </ng-container>
+            <ng-template #showName>{{ person.name }}</ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="person.isNew; else showEmail">
+              <input [(ngModel)]="person.email" placeholder="Enter email" />
+            </ng-container>
+            <ng-template #showEmail>{{ person.email }}</ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="person.isNew">
+              <button (click)="submitNew(person)">Submit</button>
+              <button (click)="cancelNew(person)">Cancel</button>
+            </ng-container>
+            <ng-container *ngIf="!person.isNew">
+              <button (click)="deletePerson(person)">Delete</button>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

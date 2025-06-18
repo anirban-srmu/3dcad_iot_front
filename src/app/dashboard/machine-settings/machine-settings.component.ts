@@ -15,6 +15,6 @@ import { MachineConfigComponent } from 'src/app/components/Admin/machine-config/
 })
 export class MachineSettingsComponent {
 
-  title = 'Master Data Management';
+ // title = 'Master Data Management';
 
 }

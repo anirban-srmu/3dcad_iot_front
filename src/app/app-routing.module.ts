@@ -24,7 +24,8 @@ const routes: Routes = [
             redirectTo: '/auth/signin',
             pathMatch: 'full'
           },
-          { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] }
+          // { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] }
+           { path: 'dashboard', component: DashboardComponent }
         ]
   },
   {

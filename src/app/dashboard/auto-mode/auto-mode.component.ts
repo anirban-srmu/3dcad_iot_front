@@ -41,7 +41,6 @@ export class AutoModeComponent implements OnInit, OnDestroy {
     ]
   };
 
-  // History pairs (previous pairs)
   barcodePairs: Array<{
     barcode1: string;
     barcode2: string;
@@ -49,7 +48,6 @@ export class AutoModeComponent implements OnInit, OnDestroy {
     barcode2Stages: string[];
   }> = [];
 
-  // Stage headers
   stageHeaders: string[] = [
     'INPUT STATION', 'TRACE ', 'PROCESS ', 'MES ',
     'TRANSFER -1', 'VISION INSPECT-1', 'PICK & PLACE -1',
@@ -61,7 +59,6 @@ export class AutoModeComponent implements OnInit, OnDestroy {
   alarmMessage = 'No alarms detected';
   machineMessage = 'Machine operating normally';
 
-  // Counts for OK, NG, NR, SK
   okCount = 0;
   ngCount = 0;
   nrCount = 0;

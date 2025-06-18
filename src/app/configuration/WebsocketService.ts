@@ -7,6 +7,7 @@ import { Config } from './env.config';
   providedIn: 'root'
 })
 export class WebsocketService implements OnDestroy {
+  [x: string]: any;
   private ws: WebSocket | null = null;
   private messageSubject = new Subject<string>();
   private reconnectInterval = 5000; // in milliseconds

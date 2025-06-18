@@ -43,16 +43,18 @@
   }
   
   /* Indicator Styles */
-  .form-control-sm {
-    padding: 4px 8px; /* Slightly more padding */
-    font-size: 0.75rem; /* Slightly increased */
-    min-height: 26px;
-    display: flex;
-    align-items: center;
-    border-radius: 3px;
-    margin-bottom: 4px;
-    border: 1px solid #dee2e6;
-  }
+  // .form-control-sm {
+  //   padding: 4px 8px; /* Slightly more padding */
+  //   font-size: 0.75rem; /* Slightly increased */
+  //   min-height: 26px;
+  //   display: flex;
+  //   align-items: center;
+  //   border-radius: 3px;
+  //   margin-bottom: 4px;
+  //   border: 1px solid #dee2e6;
+  // }
+
+  
   
   .glow-true {
     color: white;
@@ -193,3 +195,71 @@
     border: none !important;
   }
   
+
+
+
+  /* Custom input group styling */
+.input-group-custom {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.input-group-custom:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-group-label {
+  min-width: 100px;
+  justify-content: center;
+  font-weight: 500;
+  color: #495057;
+  border-right: none;
+  background-color: #f8f9fa !important;
+}
+
+.input-field {
+  border-left: none;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  padding: 0.375rem 0.75rem;
+}
+
+.input-field:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.1);
+  background-color: #fff;
+}
+
+/* Add a subtle border around the entire input group */
+.input-group-custom {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+/* Remove double border between label and input */
+.input-group-custom .input-group-text {
+  border-right: 0;
+}
+
+.input-group-custom .form-control {
+  border-left: 0;
+}
+
+/* Focus state for the entire group */
+.input-group-custom:focus-within {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Optional: Add a small icon to indicate editable fields */
+.input-field::after {
+  content: "✎";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  opacity: 0.5;
+  font-size: 0.8rem;
+}

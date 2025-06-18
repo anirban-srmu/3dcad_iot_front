@@ -1,150 +1,12 @@
-
-<div class="machine-home-container"  >
+<div class="machine-home-container">
     <div class="container-fluid">
-        <div class="row ">
-            <div class="col-md-4 ">
-                <div class="card card-custom">
-                    <div class="card-body text-center">
-                        <h3 class="card-title d-flex justify-content-center align-items-center">
-                            Overall OEE
-                            <!-- <label class="switch">
-                                <input type="checkbox" [(ngModel)]="isOEEOn" (change)="toggleOEE()">
-                                <span class="slider"></span>
-                                <span class="switch-label on">OFF</span>
-                                <span class="switch-label off">ON</span>
-                               
-                            </label> -->
-                        </h3>
-                        <div echarts [options]="chartOptions" style="width: 300px; height: 270px;" class="demo-chart"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card card-custom">
-                    <div class="card-body">
-                        <h3 class="card-title text-center ">OEE Components</h3>
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <!-- <h5>Availability</h5> -->
-                                <!-- <div class="display-5 my-2" [ngClass]="{
-                      'text-success': data.oee.availability >= 90,
-                      'text-warning': data.oee.availability >= 70 && data.oee.availability < 90,
-                      'text-danger': data.oee.availability < 70
-                    }">
-                                    {{ data.oee.availability.toFixed(1) }}%
-                                </div> -->
-                                <div echarts [options]="chartOptions1" style="width: 300px; height: 270px;" class="demo-chart"></div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <!-- <h5>Performance</h5>
-                                <div class="display-5 my-2" [ngClass]="{
-                      'text-success': data.oee.performance >= 90,
-                      'text-warning': data.oee.performance >= 70 && data.oee.performance < 90,
-                      'text-danger': data.oee.performance < 70
-                    }">
-                                    {{ data.oee.performance.toFixed(1) }}%
-                                </div> -->
-                                <div echarts [options]="chartOptions2" style="width: 300px; height: 270px;" class="demo-chart"></div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <!-- <h5>Quality</h5>
-                                <div class="display-5 my-2" [ngClass]="{
-                      'text-success': data.oee.quality >= 90,
-                      'text-warning': data.oee.quality >= 70 && data.oee.quality < 90,
-                      'text-danger': data.oee.quality < 70
-                    }">
-                                    {{ data.oee.quality.toFixed(1) }}%
-                                </div> -->
-                                <div echarts [options]="chartOptions3" style="width: 300px; height: 270px;" class="demo-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title text-center">Machine Status</h3>
-                        <div class="status-cards d-flex flex-wrap gap-2 mb-3 justify-content-center">
-                            <div class="card shift-card1" [class.bg-success]="data.machineStatus.cycleRunning"
-                                 [class.text-white]="data.machineStatus.cycleRunning">
-                                <div class="card-body p-2 text-center"> <!-- Reduced padding -->
-                                    <i class="fas fa-play-circle fa-lg"></i> <!-- Use fa-lg for smaller icon -->
-                                    <div class="fs-6">Run</div> <!-- Shortened name -->
-                                </div>
-                            </div>
-                            <div class="card shift-card1" [class.bg-secondary]="data.machineStatus.idle"
-                                 [class.text-white]="data.machineStatus.idle">
-                                <div class="card-body p-2 text-center">
-                                    <i class="fas fa-pause-circle fa-lg"></i>
-                                    <div class="fs-6">Idle</div>
-                                </div>
-                            </div>
-                            <div class="card shift-card1" [class.bg-danger]="data.machineStatus.stopped"
-                                 [class.text-white]="data.machineStatus.stopped">
-                                <div class="card-body p-2 text-center">
-                                    <i class="fas fa-stop-circle fa-lg"></i>
-                                    <div class="fs-6">Stop</div>
-                                </div>
-                            </div>
-                            <div class="card shift-card1" [class.bg-danger]="data.machineStatus.breakdown"
-                                 [class.text-white]="data.machineStatus.breakdown">
-                                <div class="card-body p-2 text-center">
-                                    <i class="fas fa-exclamation-triangle fa-lg"></i>
-                                    <div class="fs-6">Error</div> <!-- Shortened name -->
-                                </div>
-                            </div>
-    
-                            <div class="card shift-card1" [class.bg-warning]="data.machineStatus.maintenanceMode"
-                                 [class.text-dark]="data.machineStatus.maintenanceMode">
-                                <div class="card-body p-2 text-center">
-                                    <i class="fas fa-tools fa-lg"></i>
-                                    <div class="fs-6">Maint</div> <!-- Shortened name -->
-                                </div>
-                            </div>
-                            <div class="card shift-card1" [class.bg-danger]="data.machineStatus.stopped"
-                            [class.text-white]="data.machineStatus.stopped">
-                           <div class="card-body p-2 text-center">
-                               <i class="fas fa-check  fa-lg"></i>
-                               <div class="fs-6">MS Avail</div>
-                           </div>
-                       </div>
-                       <div class="card shift-card1" [class.bg-warning]="data.machineStatus.maintenanceMode"
-                       [class.text-dark]="data.machineStatus.maintenanceMode">
-                      <div class="card-body p-2 text-center">
-                          <i class="fas fa-tools fa-lg"></i>
-                          <div class="fs-6">Down TM</div> <!-- Shortened name -->
-                      </div>
-                  </div>
-                        </div>
-            
-                        <div class="alarm-panel mt-4">
-                            <h4 class="text-center">Current Alarm</h4>
-                            <div class="alert" [class.alert-danger]="data.alarms.currentAlarm !== 'No Alarms'"
-                                 [class.alert-success]="data.alarms.currentAlarm === 'No Alarms'">
-                                {{ data.alarms.currentAlarm }}
-                            </div>
-            
-                            <h4 class="mt-3 text-center">Alarm History</h4>
-                            <div class="alarm-history">
-                                <ul class="list-group">
-                                    <li class="list-group-item" *ngFor="let alarm of data.alarms.history.slice(0, 5)">
-                                        {{ alarm }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card ">
-                    <div class="card-body">
+<div class="row">
+    <!-- LEFT COLUMN -->
+    <div class="col-lg-6 d-flex flex-column">
+        <div class="card h-100">
+                             <div class="card-body">
                         <!-- <h3 class="card-title text-center">Production Metrics</h3> -->
-    
+
                         <div class="row ">
                             <div class="col-md-6  mb-md-0">
                                 <div class="card  shift-card ">
@@ -152,56 +14,50 @@
                                         <h5 class="card-title">Cycle Time</h5>
                                         <div class="d-flex align-items-baseline">
                                             <h2 class="display-6 me-2">
-                                                {{ (data.productionMetrics.cycleTime).toFixed(0) }}s
+                                                {{ (data.cycleTime).toFixed(0) }}s
                                             </h2>
-                                            <small class="text-muted">Target: {{ data.productionMetrics.targetCycleTime }}s</small>
+                                            <small class="text-muted">Target: {{ data.targetCycleTime
+                                                }}s</small>
                                         </div>
                                         <div class="mt-2">
                                             <span class="badge"
-                                                [class.bg-success]="data.productionMetrics.cycleTime <= data.productionMetrics.targetCycleTime"
-                                                [class.bg-warning]="data.productionMetrics.cycleTime > data.productionMetrics.targetCycleTime">
-                                                {{ data.productionMetrics.cycleTime <= data.productionMetrics.targetCycleTime ? 'On Target' : 'Above Target' }}
-                                            </span>
+                                                [class.bg-success]="data.cycleTime <= data.targetCycleTime"
+                                                [class.bg-warning]="data.cycleTime > data.targetCycleTime">
+                                                {{ data.cycleTime <= data.targetCycleTime ? 'On Target' : 'Above Target'
+                                                    }} </span>
                                         </div>
-                                    
-                                        <!-- New Static Field for Cycle Start/Stop and Current Date -->
-                                        <!-- <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <div>
-                                                <h6>Cycle Status:</h6>
-                                                <span class="badge"
-                                                    [class.bg-success]="isCycleRunning"
-                                                    [class.bg-danger]="!isCycleRunning">
-                                                    {{ isCycleRunning ? 'Started' : 'Stopped' }}
-                                                </span>
-                                            </div>
-    
-                                        </div> -->
+
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="card shift-card">
                                     <div class="card-body">
                                         <h5 class="card-title">Parts Quality</h5>
                                         <div class="d-flex justify-content-between text-center">
                                             <div class="px-2">
-                                                <div class="text-success fw-bold">{{ data.productionMetrics.okParts }}</div>
+                                                <div class="text-success fw-bold">{{ data.okParts }}
+                                                </div>
                                                 <small>OK Parts</small>
                                             </div>
                                             <div class="px-2">
-                                                <div class="text-danger fw-bold">{{ data.productionMetrics.nokParts }}</div>
+                                                <div class="text-danger fw-bold">{{ data.nokParts }}
+                                                </div>
                                                 <small>NOK Parts</small>
                                             </div>
                                             <div class="px-2">
-                                                <div class="text-primary fw-bold">{{ data.productionMetrics.totalParts }}
+                                                <div class="text-primary fw-bold">{{ data.totalParts
+                                                    }}
                                                 </div>
                                                 <small>Total</small>
                                             </div>
                                         </div>
                                         <div class="quality-rate text-center mt-2">
                                             <span class="badge card-custom bg-success">
-                                                Quality Rate: {{ (data.productionMetrics.totalParts > 0 ?
-                                                (data.productionMetrics.okParts / data.productionMetrics.totalParts * 100) :
+                                                Quality Rate: {{ (data.totalParts > 0 ?
+                                                (data.okParts / data.totalParts *
+                                                100) :
                                                 0).toFixed(1) }}%
                                             </span>
                                         </div>
@@ -209,8 +65,6 @@
                                 </div>
                             </div>
                         </div>
-    
-                        <h4 class="text-center">Shift Production</h4>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card shift-card ">
@@ -218,15 +72,15 @@
                                         <h5 class="card-title">Shift A</h5>
                                         <div class="d-flex justify-content-between">
                                             <div>
-                                                <div class="text-success">{{ data.shiftData.shiftA.okParts }}</div>
+                                                <div class="text-success">{{ data.shiftA_OK_Parts }}</div>
                                                 <small>OK</small>
                                             </div>
                                             <div>
-                                                <div class="text-danger">{{ data.shiftData.shiftA.nokParts }}</div>
+                                                <div class="text-danger">{{ data.shiftA_Nok_Parts }}</div>
                                                 <small>NOK</small>
                                             </div>
                                             <div>
-                                                <div class="text-primary">{{ data.shiftData.shiftA.totalParts }}</div>
+                                                <div class="text-primary">{{ data.shiftA_TotalParts }}</div>
                                                 <small>Total</small>
                                             </div>
                                         </div>
@@ -239,15 +93,15 @@
                                         <h5 class="card-title">Shift B</h5>
                                         <div class="d-flex justify-content-between">
                                             <div>
-                                                <div class="text-success">{{ data.shiftData.shiftB.okParts }}</div>
+                                                <div class="text-success">{{ data.shiftB_OK_Parts }}</div>
                                                 <small>OK</small>
                                             </div>
                                             <div>
-                                                <div class="text-danger">{{ data.shiftData.shiftB.nokParts }}</div>
+                                                <div class="text-danger">{{ data.shiftB_Nok_Parts }}</div>
                                                 <small>NOK</small>
                                             </div>
                                             <div>
-                                                <div class="text-primary">{{ data.shiftData.shiftB.totalParts }}</div>
+                                                <div class="text-primary">{{ data.shiftB_TotalParts }}</div>
                                                 <small>Total</small>
                                             </div>
                                         </div>
@@ -260,15 +114,15 @@
                                         <h5 class="card-title">Shift C</h5>
                                         <div class="d-flex justify-content-between">
                                             <div>
-                                                <div class="text-success">{{ data.shiftData.shiftC.okParts }}</div>
+                                                <div class="text-success">{{ data.shiftC_OK_Parts }}</div>
                                                 <small>OK</small>
                                             </div>
                                             <div>
-                                                <div class="text-danger">{{ data.shiftData.shiftC.nokParts }}</div>
+                                                <div class="text-danger">{{ data.shiftC_Nok_Parts }}</div>
                                                 <small>NOK</small>
                                             </div>
                                             <div>
-                                                <div class="text-primary">{{ data.shiftData.shiftC.totalParts }}</div>
+                                                <div class="text-primary">{{ data.shiftC_TotalParts }}</div>
                                                 <small>Total</small>
                                             </div>
                                         </div>
@@ -276,13 +130,125 @@
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-lg-6 d-flex flex-column">
+        <div class="card h-100">
+            <div class="card-body h-100 d-flex flex-column">
+                <div class="row h-100">
+                    <!-- Left inner col: Cycle Start/Stop & Alarm -->
+                    <div class="col-md-6 d-flex flex-column justify-content-between">
+                        <div class="mb-3">
+                            <div class="card shift-card p-2 h-100" 
+                                 [class.bg-success]="data.cycleStartStop" 
+                                 [class.text-white]="data.cycleStartStop">
+                                <div class="card-body p-2">
+                                    <h6 class="card-title text-center mb-2">Cycle Start/Stop</h6>
+                                    <div class="text-center fs-6 fw-bold">
+                                        {{ data.cycleStartStop ? 'Cycle Started' : 'Cycle Stopped' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="card shift-card p-2 h-100">
+                                <div class="card-body p-2">
+                                    <div class="alarm-panel">
+                                        <div class="text-center fw-semibold mb-1">Current Alarm</div>
+                                        <div class="alert p-1 m-0 text-center"
+                                            [class.alert-danger]="data.alarmSignals !== 'No Alarms'"
+                                            [class.alert-success]="data.alarmSignals === 'No Alarms'">
+                                            {{ data.alarmSignals }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right inner col: Chart -->
+                    <div class="col-md-6">
+                        <div class="h-100">
+                            <div echarts [options]="partsQualityOptions" style="height: 100%; min-height: 300px;"></div>
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end right col -->
+</div>
+
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Machine Status</h3>
+                    <div class="status-cards d-flex flex-wrap gap-2 mb-3 justify-content-center">
+                        <div class="card shift-card1" [class.bg-success]="data.machineStatus.cycleRunning"
+                            [class.text-white]="data.machineStatus.cycleRunning">
+                            <div class="card-body p-2 text-center"> <!-- Reduced padding -->
+                                <i class="fas fa-play-circle fa-lg"></i> <!-- Use fa-lg for smaller icon -->
+                                <div class="fs-6">Cycle Running</div> <!-- Shortened name -->
+                            </div>
+                        </div>
+                        <div class="card shift-card1" [class.bg-secondary]="data.machineStatus.idle"
+                            [class.text-white]="data.machineStatus.idle">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-pause-circle fa-lg"></i>
+                                <div class="fs-6">Idle</div>
+                            </div>
+                        </div>
+                        <div class="card shift-card1" [class.bg-danger]="data.machineStatus.stopped"
+                            [class.text-white]="data.machineStatus.stopped">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-stop-circle fa-lg"></i>
+                                <div class="fs-6"> Stopped (OFF) </div>
+                            </div>
+                        </div>
+                        <div class="card shift-card1" [class.bg-danger]="data.machineStatus.breakdown"
+                            [class.text-white]="data.machineStatus.breakdown">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-exclamation-triangle fa-lg"></i>
+                                <div class="fs-6"> Breakdown</div> <!-- Shortened name -->
+                            </div>
+                        </div>
+
+                        <div class="card shift-card1" [class.bg-warning]="data.machineStatus.maintenanceMode"
+                            [class.text-dark]="data.machineStatus.maintenanceMode">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-tools fa-lg"></i>
+                                <div class="fs-6">Maintenance Mode</div> <!-- Shortened name -->
+                            </div>
+                        </div>
+                        <div class="card shift-card1" [class.bg-danger]="data.machineStatus.stopped"
+                            [class.text-white]="data.machineStatus.stopped">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-check  fa-lg"></i>
+                                <div class="fs-6">Availability Status</div>
+                            </div>
+                        </div>
+                        <div class="card shift-card1" [class.bg-warning]="data.machineStatus.maintenanceMode"
+                            [class.text-dark]="data.machineStatus.maintenanceMode">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-tools fa-lg"></i>
+                                <div class="fs-6">Plan Downtime Status</div> <!-- Shortened name -->
+                            </div>
+                        </div>
+                        <div class="card shift-card1" [class.bg-warning]="data.machineStatus.maintenanceMode"
+                            [class.text-dark]="data.machineStatus.maintenanceMode">
+                            <div class="card-body p-2 text-center">
+                                <i class="fas fa-tools fa-lg"></i>
+                                <div class="fs-6">Cycle Start/Stop</div> <!-- Shortened name -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
-
-
-<!-- <app-componentg-generator></app-componentg-generator> -->

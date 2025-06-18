@@ -3,52 +3,52 @@
     <div class="row g-2 mb-3">
       <!-- Card 1: Loading Conveyor -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.loadingConveyor.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">LOADING CONVEYOR</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.loadingConveyor.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS1'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.loadingConveyor.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS1'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.loadingConveyor.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS1'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.loadingConveyor.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS1'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.loadingConveyor.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.loadingConveyor.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.loadingConveyor.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED1'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.loadingConveyor.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.loadingConveyor.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.loadingConveyor.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED1'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.loadingConveyor.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.loadingConveyor.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME1',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE1',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE1',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START1',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP1',1)">STOP</button>
             </div>
           </div>
         </div>
@@ -56,52 +56,52 @@
   
       <!-- Card 2: Unload Conveyor -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.unloadConveyor.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">UNLOAD CONVEYOR</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.unloadConveyor.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS2'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.unloadConveyor.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS2'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.unloadConveyor.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS2'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.unloadConveyor.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS2'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.unloadConveyor.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.unloadConveyor.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.unloadConveyor.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED2'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.unloadConveyor.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.unloadConveyor.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.unloadConveyor.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED2'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.unloadConveyor.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.unloadConveyor.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME2',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE2',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE2',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START2',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP2',1)">STOP</button>
             </div>
           </div>
         </div>
@@ -109,52 +109,52 @@
   
       <!-- Card 3: Gantry 1 -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.gantry1.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 1</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS3'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS3'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS3'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS3'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.gantry1.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.gantry1.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED3'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.gantry1.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.gantry1.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED3'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.gantry1.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.gantry1.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME3',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE3',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE3',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START3',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP3',1)">STOP</button>
             </div>
           </div>
         </div>
@@ -162,52 +162,52 @@
   
       <!-- Card 4: Gantry 2 -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.gantry2.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 2</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS4'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS4'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS4'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS4'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.gantry2.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.gantry2.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED4'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.gantry2.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.gantry2.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED4'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.gantry2.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.gantry2.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME4',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE4',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE4',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START4',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP4',1)">STOP</button>
             </div>
           </div>
         </div>
@@ -218,52 +218,52 @@
     <div class="row g-2">
       <!-- Card 5: Gantry 1 Y Axis -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.gantry1Y.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 1 Y AXIS</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1Y.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS5'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1Y.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS5'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1Y.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS5'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1Y.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS5'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.gantry1Y.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.gantry1Y.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1Y.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED5'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.gantry1Y.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.gantry1Y.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry1Y.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED5'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.gantry1Y.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.gantry1Y.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME5',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE5',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE5',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START5',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP5',1)">STOP</button>
             </div>
           </div>
         </div>
@@ -324,52 +324,52 @@
   
       <!-- Card 7: Gantry 2 Y Axis -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.gantry2Y.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 2 Y AXIS</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2Y.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS6'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2Y.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS6'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2Y.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS6'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2Y.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS6'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.gantry2Y.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.gantry2Y.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2Y.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED6'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.gantry2Y.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.gantry2Y.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2Y.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED6'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.gantry2Y.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.gantry2Y.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME6',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE6',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE6',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START6',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP6',1)" >STOP</button>
             </div>
           </div>
         </div>
@@ -377,52 +377,52 @@
   
       <!-- Card 8: Gantry 2 X Axis -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="devices.gantry2X.status">
+        <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 2 X AXIS</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2X.modeActive">I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS7'] === 1">I/P CONVEYOR MODE</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2X.controllerActive">CONTROLLER STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS7'] === 1">CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2X.programActive">PROGRAM STATUS</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS7'] === 1">PROGRAM STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2X.positionActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS7'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS:</span>
-                  <span>{{devices.gantry2X.actualPos}}</span>
+                  <span>ACTUAL POS</span>
+                  <!-- <span>{{devices.gantry2X.actualPos}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2X.speedActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED7'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED:</span>
-                  <span>{{devices.gantry2X.actualSpeed}}</span>
+                  <span>ACTUAL SPEED</span>
+                  <!-- <span>{{devices.gantry2X.actualSpeed}}</span> -->
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="devices.gantry2X.jogActive">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED7'] === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED:</span>
-                  <span>{{devices.gantry2X.jogSpeed}}</span>
+                  <span>JOG SPEED</span>
+                  <!-- <span>{{devices.gantry2X.jogSpeed}}</span> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1">STOP</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME7',1)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE7',1)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENABLE7',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START7',1)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP7',1)">STOP</button>
             </div>
           </div>
         </div>

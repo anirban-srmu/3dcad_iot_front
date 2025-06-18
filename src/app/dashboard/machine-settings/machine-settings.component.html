@@ -1,20 +1,20 @@
 <div class="machine-home-container">
     <div class="master-data-header">
-      <h1 class="text-center">Master Data Management</h1>
-      <p class="text-center text-muted">Configure system settings and parameters</p>
+      <!-- <h4 class="text-center">Master Data Management</h4> -->
+      <!-- <p class="text-center ">Configure system settings and parameters</p> -->
     </div>
     
     <div class="master-data-card">
       <div class="card-header">
         <ul ngbNav #nav="ngbNav" class="nav-tabs">
-          <li ngbNavItem>
+          <!-- <li ngbNavItem>
             <a ngbNavLink class="nav-link">
               <i class="fas fa-cogs me-2"></i>Machine Config
             </a>
             <ng-template ngbNavContent>
               <app-machine-config></app-machine-config>
             </ng-template>
-          </li>
+          </li> -->
           <li ngbNavItem>
             <a ngbNavLink class="nav-link">
               <i class="fas fa-plug me-2"></i>API Master
@@ -23,14 +23,38 @@
               <app-api-master></app-api-master>
             </ng-template>
           </li>
+          <!-- <li ngbNavItem>
+            <a ngbNavLink class="nav-link">
+              <i class="fas fa-plug me-2"></i>Shift Master
+            </a>
+            <ng-template ngbNavContent>
+              <app-api-master></app-api-master>
+            </ng-template>
+          </li> -->
           <li ngbNavItem>
+            <a ngbNavLink class="nav-link">
+              <i class="fas fa-plug me-2"></i>Message Master
+            </a>
+            <ng-template ngbNavContent>
+              <app-api-master></app-api-master>
+            </ng-template>
+          </li>
+          <!-- <li ngbNavItem>
             <a ngbNavLink class="nav-link">
               <i class="fas fa-bell me-2"></i>Alarm Master
             </a>
             <ng-template ngbNavContent>
               <app-alarm-master></app-alarm-master>
             </ng-template>
-          </li>
+          </li> -->
+          <!-- <li ngbNavItem>
+            <a ngbNavLink class="nav-link">
+              <i class="fas fa-plug me-2"></i>Reports
+            </a>
+            <ng-template ngbNavContent>
+              <app-api-master></app-api-master>
+            </ng-template>
+          </li> -->
         </ul>
       </div>
       <div class="card-body">

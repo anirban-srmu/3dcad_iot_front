@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { WebsocketService } from 'src/app/configuration/WebsocketService';
 
 interface CardItem {
   id: number;
@@ -22,71 +23,85 @@ interface Button {
   styleUrl: './robot-status.component.scss'
 })
 export class RobotStatusComponent {
-  scaraRobotLabel: CardItem[] = [
-    { id: 1, title: "ROBOT MODE", value: true },
-    { id: 2, title: "CONTROLLER STATUS", value: false },
-    { id: 3, title: "PROGRAM STATUS", value: true },
-  ];
+    // Current state from WebSocket
 
-  lcmrPallet1Label: CardItem[] = [
-    { id: 1, title: "LCMR MODE", value: true },
-    { id: 2, title: "CONTROLLER STATUS ", value: false },
-    { id: 3, title: "PROGRAM STATUS", value: true },
-    { id: 4, title: "PALLET-1 ACTUAL POS ", value: false },
-    { id: 5, title: "PALLET-1 ACTUAL SPEED", value: true },
-    { id: 6, title: "PALLET-1 JOG SPEED ", value: false },
-    { id: 7, title: "PALLET-1 TARGET POS", value: true },
-    { id: 7, title: "PALLET-1 TARGET SPEED", value: true }
-  ];
+  data={
+  "ROBOTMODE1": 0,
+  "CONTROLLERSTATUS1": 0,
+  "PROGRAMSTATUS1": 0,
+  "ABORTPROGRAM1": 0,
+  "HOMEPROGRAM1": 0,
+  "MAINPROGRAM1": 1,
+  "INITIALIZEPROGRAM1": 1,
+  "PAUSEPROGRAM1": 1,
+  "ERRORACKNOWLEDGE1": 1,
+  "CONTINUEPROGRAM1": 1,
+  "STARTPROGRAM1": 0,
+  "LCMRMODE1": 0,
+  "CONTROLLERSTATUS2": 0,
+  "PROGRAMSTATUS2": 0,
+  "PALLET1ACTUALPOS1": 0,
+  "PALLET1ACTUALSPEED1": 0,
+  "PALLET1JOGSPEED1": 0,
+  "PALLET1TARGETPOS1": 0,
+  "PALLET1TARGETSPEED1": 0,
+  "PALLET1HOME1": 1,
+  "PALLET1INITIALIZE1": 1,
+  "PALLET1OPENENABLE1": 1,
+  "PALLET1JOGFORWARD1": 1,
+  "PALLET1JOGREVERSE1": 1,
+  "PALLET1START1": 1,
+  "PALLET1STOP1": 1,
+  "ERRORACKNOWLEDGE2": 1,
+  "LCMRMODE2": 0,
+  "CONTROLLERSTATUS3": 0,
+  "PROGRAMSTATUS3": 0,
+  "PALLET1ACTUALPOS2": 1,
+  "PALLET1ACTUALSPEED2": 0,
+  "PALLET1JOGSPEED2": 0,
+  "PALLET1TARGETPOS2": 1,
+  "PALLET1TARGETSPEED2": 0,
+  "PALLET1HOME2": 1,
+  "PALLET1INITIALIZE2": 1,
+  "PALLET1OPENENABLE2": 1,
+  "PALLET1JOGFORWARD2": 1,
+  "PALLET1JOGREVERSE2": 1,
+  "PALLET1START2": 1,
+  "PALLET1STOP2": 1,
+  "ERRORACKNOWLEDGE3": 1
+}
 
-  lcmrPallet2Label: CardItem[] = [
-    { id: 1, title: "LCMR MODE", value: true },
-    { id: 2, title: "CONTROLLER STATUS ", value: false },
-    { id: 3, title: "PROGRAM STATUS", value: true },
-    { id: 4, title: "PALLET-2 ACTUAL POS ", value: false },
-    { id: 5, title: "PALLET-2 ACTUAL SPEED", value: true },
-    { id: 6, title: "PALLET-2 JOG SPEED ", value: false },
-    { id: 7, title: "PALLET-2 TARGET POS", value: true },
-    { id: 7, title: "PALLET-2 TARGET SPEED", value: true }
-  ];
 
-  toggleItemValue(cardItem: CardItem): void {
-    cardItem.value = !cardItem.value;
+  constructor(private wsService: WebsocketService) { }
+  ngOnInit(): void {
+    this.wsService.initConnection('robo-status');
+    this.wsService.getMessages().subscribe((msg: string) => {
+      try {
+        this.data = JSON.parse(msg);
+
+
+      } catch (e) {
+        console.error('Error parsing message:', e);
+      }
+    });
   }
 
-  getCardClass(card: CardItem): string {
-    return card.value ? 'true' : 'false';
+  ngOnDestroy(): void {
+    this.wsService.ngOnDestroy();
   }
 
-  scaraRobotButtons: Button[] = [
-    { id: 1, title: "ABORT PROGRAM", value: true },
-    { id: 2, title: "HOME PROGRAM", value: false },
-    { id: 3, title: "MAIN PROGRAM", value: true },
-    { id: 4, title: "INITIALIZE PROGRAM", value: false },
-    { id: 5, title: "PAUSE PROGRAM", value: true },
-    { id: 6, title: "ERROR ACKNOWLEDGE", value: true },
-    { id: 7, title: "CONTINUE PROGRAM", value: false },
-    { id: 8, title: "START PROGRAM", value: true }
-  ];
+  sendCommand(command: string, value: number | boolean): void {
+    const message = {
+      command,
+      value,
+      timestamp: new Date().toISOString()
+    };
+    
+  }
 
-  lcmrPallet1Buttons: Button[] = [
-    { id: 1, title: "PALLET-1 HOME", value: true },
-    { id: 2, title: "PALLET-1 INITIALIZE", value: false },
-    { id: 3, title: "PALLET-1 OP ENABLE", value: true },
-    { id: 4, title: "PALLET-1 JOG FORWARD", value: false },
-    { id: 5, title: "PALLET-1 JOG REVERSE", value: true },
-    { id: 6, title: "PALLET-1 START ", value: true },
-    { id: 7, title: "PALLET-1 STOP", value: false },
-    { id: 8, title: "ERROR ACKNOWLEDGE", value: true }
-  ];
-  lcmrPallet2Buttons: Button[] = [
-    { id: 1, title: "PALLET-2 HOME", value: true },
-    { id: 2, title: "PALLET-2 INITIALIZE", value: false },
-    { id: 3, title: "PALLET-2 OP ENABLE", value: true },
-    { id: 4, title: "PALLET-2 JOG FORWARD", value: false },
-    { id: 5, title: "PALLET-2 JOG REVERSE", value: true },
-    { id: 6, title: "PALLET-2 START ", value: true },
-    { id: 7, title: "PALLET-2 STOP", value: false },
-    { id: 8, title: "ERROR ACKNOWLEDGE", value: true }
-  ];
+  // Helper to get status class
+  getStatusClass(value: boolean): string {
+    return value ? 'true' : 'false';
+  }
+  
 }

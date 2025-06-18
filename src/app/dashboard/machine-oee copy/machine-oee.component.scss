@@ -1,0 +1,275 @@
+/* General Styles */
+body {
+    background-color: #f0f4f8; /* Light background for the entire page */
+    color: #343a40; /* Dark text for better readability */
+    font-family: 'Arial', sans-serif; /* Modern font for better aesthetics */
+  }
+  
+  .machine-home-container {
+    min-height: 80vh; /* Minimum height */
+    height: auto; /* Will expand beyond min-height if needed */
+    background-color: rgba(76, 76, 76, 0.8); /* Semi-transparent for better visibility */
+    color: #e8ebf0; /* --machine-light */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #3a414d; /* --machine-border */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+  /* Dashboard Header */
+  .dashboard-header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #e0e7ff; /* Light blue background */
+    border: 2px solid #ffffff; /* Solid white border */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    padding: 15px; /* Added padding for spacing */
+    margin-bottom: 20px; /* Space below the header */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .dashboard-header:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  /* Status Cards */
+  .status-cards .card {
+    flex: 1 1 100px;
+    transition: all 0.3s;
+    opacity: 0.95; /* Slightly more opaque */
+    border-radius: 8px; /* Rounded corners for cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .status-cards .card.bg-success {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+  }
+  
+  .status-cards .card.bg-danger {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+  }
+  
+  .status-cards .card.bg-warning {
+    background-color: #fff3cd; /* Light yellow background */
+    color: #856404; /* Dark yellow text */
+  }
+  
+  .status-cards .card.bg-secondary {
+    background-color: #e2e3e5; /* Light gray background */
+    color: #383d41; /* Dark gray text */
+  }
+  
+  /* Hover Effect */
+  .status-cards .card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  }
+  
+  /* Alarm Animation */
+  .alert-danger {
+    animation: pulse 1.5s infinite;
+  }
+  
+  /* Pulse Animation */
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .display-6 {
+        font-size: 2rem;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+  }
+  
+  /* Logo Styles */
+  .logo {
+    height: 40px; /* Set the height of the logo */
+  }
+  
+  /* Card Styles */
+  .card {
+    border: 1px solid #dee2e6; /* Light border for cards */
+    border-radius: 8px; /* Rounded corners for cards */
+    background-color: #ffffff; /* White background for cards */
+  }
+  
+  /* Button Styles */
+  .btn {
+    border-radius: 20px; /* Rounded buttons */
+    font-weight: bold; /* Bold text for buttons */
+  }
+  
+  /* Text Colors */
+  .text-success {
+    color: #28a745; /* Green for success */
+  }
+  
+  .text-danger {
+    color: #dc3545; /* Red for danger */
+  }
+  
+  .text-warning {
+    color: #ffc107; /* Yellow for warning */
+  }
+  
+  /* Badge Styles */
+  .badge {
+    border-radius: 12px; /* Rounded badges */
+  }
+  
+  /* Card Title Styles */
+  .card-title {
+    font-weight: bold; /* Bold titles */
+    color: #495057; /* Darker color for titles */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow for emphasis */
+  }
+  
+  /* Additional Styles for Better Contrast */
+  .display-4 {
+    color: #007bff; /* Bootstrap primary color */
+    font-weight: bold; /* Bold font for emphasis */
+  }
+  
+  .display-5 {
+    color: #6c757d; /* Bootstrap secondary color */
+    font-weight: bold; /* Bold font for emphasis */
+  }
+  
+  /* Highlighted Text */
+  .highlight 
+  .highlight {
+    background-color: #ffeeba; /* Light yellow highlight */
+    font-weight: bold; /* Bold text for emphasis */
+    padding: 2px 4px; /* Padding for better visibility */
+    border-radius: 4px; /* Rounded corners for highlights */
+  }
+  
+  .card-custom {
+    background-color: #dddddd; /* Default background color */
+    color: white;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  
+  .shift-card{
+    background-color: #dddddd; /* Default background color */
+  }
+  
+  .shift-card1 {
+    width: 80px; /* Set a fixed width for the cards */
+   // height: 100px; /* Set a fixed height for the cards */
+    border-radius: 8px; /* Optional: rounded corners */
+    overflow: hidden; /* Prevent overflow */
+  }
+  .card-custom.bg-success {
+    background-color: #28a745; /* Green for success */
+  }
+  
+  .card-custom.bg-warning {
+    background-color: #ffc107; /* Yellow for warning */
+  }
+  
+  .card-custom.bg-danger {
+    background-color: #dc3545; /* Red for danger */
+  }
+  
+  .card-custom.bg-secondary {
+    background-color: #6c757d; /* Gray for secondary */
+  }
+  
+  /* Toggle Switch Styles */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 80px; /* Width of the switch */
+    height: 40px; /* Height of the switch */
+    margin-left: 10px; /* Space between title and switch */
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: red; /* Off color */
+    transition: .4s;
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 36px; /* Knob height */
+    width: 36px; /* Knob width */
+    left: 2px; /* Knob position */
+    bottom: 2px; /* Knob position */
+    background-color: white; /* Knob color */
+    transition: .4s;
+    border-radius: 5px; /* Slightly rounded corners for the knob */
+  }
+  
+  input:checked + .slider {
+    background-color: green; /* On color */
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(40px); /* Move knob to the right */
+  }
+  
+  /* Labels for ON and OFF */
+  .switch-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: white; /* Text color */
+    font-size: 14px; /* Text size */
+    transition: opacity 0.4s; /* Smooth transition */
+  }
+  
+  .switch-label.on {
+    left: 10px; /* Position for ON label */
+    opacity: 0; /* Hide ON label by default */
+  }
+  
+  .switch-label.off {
+    right: 48px; /* Position for OFF label */
+    opacity: 1; /* Show OFF label by default */
+  }
+  
+  input:checked + .slider .switch-label.on {
+    opacity: 1; /* Show ON label when checked */
+  }
+  
+  input:checked + .slider .switch-label.off {
+    opacity: 0; /* Hide OFF label when checked */
+  }
+  
+  /* Adjust visibility of labels based on switch state */
+  input:checked + .slider .switch-label.on {
+    opacity: 1; /* Show ON label when checked */
+  }
+  
+  input:checked + .slider .switch-label.off {
+    opacity: 0; /* Hide OFF label when checked */
+  }
+  
+  

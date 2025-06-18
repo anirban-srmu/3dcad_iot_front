@@ -46,12 +46,14 @@
     flex-grow: 1;
   }
   
-  .indicator-item {
+.indicator-item {
     border-radius: 6px;
+    border: 1px solid #232323; /* Added border property */
+    // background-color: #f0f0f0; /* Light gray background */
     overflow: hidden;
     font-size: 0.85rem;
     min-height: 60px;
-  }
+}
   
   .indicator-content {
     padding: 12px;
@@ -61,15 +63,15 @@
   }
   
   .indicator-item.true .indicator-content {
-    background-color: #e8f5e9;
+    background-color: #47df54;
     color: #2e7d32;
-    border-left: 3px solid #2e7d32;
+    border-left: 3px solid #41cf48;
   }
   
   .indicator-item.false .indicator-content {
-    background-color: #ffebee;
-    color: #c62828;
-    border-left: 3px solid #c62828;
+    background-color: #a9a9a9;
+    color: #747474;
+    border-left: 3px solid #4d4d4d;
   }
   
   .indicator-title {

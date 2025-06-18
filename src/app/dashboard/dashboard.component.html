@@ -90,6 +90,14 @@
         </div>
         
         <!-- Alarm Screen -->
+        <div class="col menu-item" [class.active]="activeScreen === 'oee'" (click)="showScreen('oee')">
+          <div class="menu-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="menu-label">OEE</div>
+        </div>
+
+
         <div class="col menu-item" [class.active]="activeScreen === 'alarm-screen'" (click)="showScreen('alarm-screen')">
           <div class="menu-icon">
             <i class="fas fa-exclamation-triangle"></i>
@@ -105,12 +113,7 @@
           <div class="menu-label">RECIPE</div>
         </div>
         <!-- Settings -->
-        <div class="col menu-item" [class.active]="activeScreen === 'oee'" (click)="showScreen('oee')">
-          <div class="menu-icon">
-            <i class="fas fa-cogs"></i>
-          </div>
-          <div class="menu-label">OEE</div>
-        </div>
+
         <div class="col menu-item" [class.active]="activeScreen === 'settings'" (click)="showScreen('settings')">
           <div class="menu-icon">
             <i class="fas fa-cogs"></i>
