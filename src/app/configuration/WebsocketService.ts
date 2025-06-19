@@ -42,13 +42,13 @@ export class WebsocketService implements OnDestroy {
     this.connect(fullUrl);
   }
 
-  public sendMessage(message: string): void {
-    if (this.ws?.readyState === WebSocket.OPEN) {
-      this.ws.send(message);
-    } else {
-      console.warn('WebSocket not connected.');
-    }
+public sendMessage(message: any): void {
+  if (this.ws?.readyState === WebSocket.OPEN) {
+    this.ws.send(message);
+  } else {
+    console.warn('WebSocket is not open. Cannot send message.');
   }
+}
 
   public getMessages(): Observable<string> {
     return this.messageSubject.asObservable();

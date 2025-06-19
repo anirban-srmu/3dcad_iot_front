@@ -14,6 +14,18 @@ export class ManualModeComponent {
 
 constructor(private wsService:WebsocketService){}
 
+
+  ngOnInit(): void {
+    this.wsService.initConnection('robo-status');
+    this.wsService.getMessages().subscribe((msg: string) => {
+      try {
+        this.data = JSON.parse(msg);
+      } catch (e) {
+        console.error('Error parsing message:', e);
+      }
+    });
+  }
+
   data:any;
     pushValue(address: string, value: number): void {
     if (typeof value !== 'number' || (value !== 0 && value !== 1)) {
