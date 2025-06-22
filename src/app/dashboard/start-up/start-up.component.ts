@@ -12,13 +12,13 @@ export class StartUpComponent implements OnInit {
 
   constructor(private wsService: WebsocketService) { }
 
-  data: any = [];
+  data: any ;
   ngOnInit(): void {
     this.wsService.initConnection('startup-status');
     this.wsService.getMessages().subscribe((msg: string) => {
       try {
-        const data = JSON.parse(msg);
-        this.data = data;
+        const data = msg;
+       // this.data = data;
       } catch (e) {
         console.error('Error parsing message:', e);
       }

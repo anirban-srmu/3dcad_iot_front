@@ -48,12 +48,13 @@ export class AutoModeComponent implements OnInit, OnDestroy {
     barcode2Stages: string[];
   }> = [];
 
-  stageHeaders: string[] = [
-    'INPUT STATION', 'TRACE ', 'PROCESS ', 'MES ',
-    'TRANSFER -1', 'VISION INSPECT-1', 'PICK & PLACE -1',
-    'TRANSFER -2', 'VISION INSPECT-2', 'PICK & PLACE -2',
-    'TRACE UPLOAD', 'MES UPLOAD', 'UNLOAD STATION'
-  ];
+
+
+  stageHeaders = [
+  'InputStation', 'Trace', 'Process', 'MES', 'Transfer-1',
+  'Vision-1', 'PickPlace-1', 'Transfer-2', 'Vision-2',
+  'PickPlace-2', 'TraceUpload', 'MESUpload', 'UnloadStation'
+];
 
   // Alarm and machine messages
   alarmMessage = 'No alarms detected';
@@ -69,14 +70,12 @@ export class AutoModeComponent implements OnInit, OnDestroy {
   barcode_4?: string;
   alaram = 0;
 
-
   ngOnInit() {
 
-  this.wsService.initConnection('plc-status');
+  this.wsService.initConnection('machine-status');
   this.subscription = this.wsService.getMessages().subscribe((msg: string) => {
     try {
       const data = JSON.parse(msg);
-
       this.okCount = data.OK || 0;
       this.ngCount = data.NOK || 0;
       this.nrCount = data.NR || 0;
@@ -86,12 +85,33 @@ export class AutoModeComponent implements OnInit, OnDestroy {
       this.barcode_3 = data.BARCODE_3;
       this.barcode_4 = data.BARCODE_4;
       this.alaram = data.ALARM;
+    const set1 = data.set1[0];
+    const set2 = data.set2[0];
+this.barcodes = [
+  {
+    name: 'ABC123',
+    stages: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  {
+    name: 'XYZ456',
+    stages: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  {
+    name: 'LMN789',
+    stages: [1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0]
+  },
+  {
+    name: 'PQR000',
+    stages: [1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1]
+  }
+];
+
 
     } catch (e) {
       console.error('Invalid JSON:', msg);
     }
   });
-  console.log("PLSC DATA",this.counts);
+  console.log("PLSC DATA",this.barcodes);
 
   }
 
@@ -133,4 +153,13 @@ export class AutoModeComponent implements OnInit, OnDestroy {
   goBackHome() {
     this.router.navigate(['/']); // your home route
   }
+barcodes:any;
+
+
+
+
+
+
+
+
 }

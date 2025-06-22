@@ -78,27 +78,9 @@
       </tr>
     </thead>
     <tbody class="current-pair">
-      <tr>
-        <td>{{ barcode_1 }}</td>
-        <td *ngFor="let color of currentPair.barcode1Stages" [ngClass]="getStageClass(color)">
-          <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>{{ barcode_1 }}</td>
-        <td *ngFor="let color of currentPair.barcode2Stages" [ngClass]="getStageClass(color)">
-          <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>{{ barcode_3 }}</td>
-        <td *ngFor="let color of currentPair.barcode1Stages" [ngClass]="getStageClass(color)">
-          <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>{{ barcode_4 }}</td>
-        <td *ngFor="let color of currentPair.barcode1Stages" [ngClass]="getStageClass(color)">
+      <tr *ngFor="let barcode of barcodes">
+        <td>{{ barcode.name }}</td>
+        <td *ngFor="let color of barcode.stages" [ngClass]="getStageClass(color)">
           <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
         </td>
       </tr>

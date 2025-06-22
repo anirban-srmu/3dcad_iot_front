@@ -3,21 +3,21 @@
     <!-- SCARA ROBOT YAMAHA Card -->
     <div class="single-card-container">
       <div class="card">
-        <h3 class="p-2 mt-2 text-center"># SCARA ROBOT YAMAHA</h3>
+        <h3 class="p-2 mt-2 text-center"># SCARA ROBOT</h3>
         <div class="indicators-section">
-          <div class="indicator-item" [class]="getStatusClass(data['ROBOTMODE1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.ROBOTMODE1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">ROBOT MODE</div>
-              <!-- <div class="indicator-value">{{ currentState.scaraRobot.robotMode  }}</div> -->
+              <div class="indicator-value">{{ data?.ROBOTMODE1  }}</div>
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['CONTROLLERSTATUS1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.CONTROLLERSTATUS1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">CONTROLLER STATUS</div>
               <!-- <div class="indicator-value">{{ currentState.scaraRobot.controllerStatus }}</div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PROGRAMSTATUS1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PROGRAMSTATUS1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PROGRAM STATUS</div>
               <!-- <div class="indicator-value">{{ currentState.scaraRobot.programStatus }}</div> -->
@@ -40,51 +40,51 @@
     <!-- LCMR YAMAHA (PALLET-1) Card -->
     <div class="single-card-container">
       <div class="card">
-        <h3 class="p-2 mt-2 text-center"># LCMR YAMAHA (PALLET-1)</h3>
+        <h3 class="p-2 mt-2 text-center"># LCMR (PALLET-1)</h3>
         <div class="indicators-section">
-          <div class="indicator-item" [class]="getStatusClass(data['LCMRMODE1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.LCMRMODE1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">LCMR MODE</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.lcmrMode  }}</div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['CONTROLLERSTATUS2'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.CONTROLLERSTATUS2 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">CONTROLLER STATUS</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.controllerStatus  }}</div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PROGRAMSTATUS2'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PROGRAMSTATUS2 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PROGRAM STATUS</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.programStatus  }}</div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PALLET1ACTUALPOS1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PALLET1ACTUALPOS1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PALLET-1 ACTUAL POS</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.actualPos }} </div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PALLET1ACTUALSPEED1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PALLET1ACTUALSPEED1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PALLET-1 ACTUAL SPEED</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.actualSpeed }} </div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PALLET1JOGSPEED1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PALLET1JOGSPEED1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PALLET-1 JOG SPEED</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.jogSpeed }} </div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PALLET1TARGETPOS1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PALLET1TARGETPOS1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PALLET-1 TARGET POS</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.targetPos }} </div> -->
             </div>
           </div>
-          <div class="indicator-item" [class]="getStatusClass(data['PALLET1TARGETSPEED1'] === 1)">
+          <div class="indicator-item" [class]="getStatusClass(data?.PALLET1TARGETSPEED1 === 1)">
             <div class="indicator-content">
               <div class="indicator-title">PALLET-1 TARGET SPEED</div>
               <!-- <div class="indicator-value">{{ currentState.lcmrPallet1.targetSpeed }} </div> -->
@@ -104,55 +104,54 @@
       </div>
     </div>
 
-    <!-- LCMR YAMAHA (PALLET-2) Card -->
-<!-- LCMR YAMAHA (PALLET-2) Card -->
+
 <div class="single-card-container">
   <div class="card">
-    <h3 class="p-2 mt-2 text-center"># LCMR YAMAHA (PALLET-2)</h3>
+    <h3 class="p-2 mt-2 text-center"># LCMR (PALLET-2)</h3>
     <div class="indicators-section">
-      <div class="indicator-item" [class]="getStatusClass(data['LCMRMODE2'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.LCMRMODE2 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">LCMR MODE</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.lcmrMode  }}</div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['CONTROLLERSTATUS3'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.CONTROLLERSTATUS3 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">CONTROLLER STATUS</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.controllerStatus  }}</div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['PROGRAMSTATUS3'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.PROGRAMSTATUS3 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">PROGRAM STATUS</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.programStatus  }}</div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['PALLET1ACTUALPOS2'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.PALLET1ACTUALPOS2 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">PALLET-2 ACTUAL POS</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.actualPos }} </div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['PALLET1ACTUALSPEED2'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.PALLET1ACTUALSPEED2 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">PALLET-2 ACTUAL SPEED</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.actualSpeed }} </div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['PALLET1JOGSPEED2'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.PALLET1JOGSPEED2 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">PALLET-2 JOG SPEED</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.jogSpeed }}</div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['PALLET1TARGETPOS2'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.PALLET1TARGETPOS2 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">PALLET-2 TARGET POS</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.targetPos }}</div> -->
         </div>
       </div>
-      <div class="indicator-item" [class]="getStatusClass(data['PALLET1TARGETSPEED2'] === 1)">
+      <div class="indicator-item" [class]="getStatusClass(data?.PALLET1TARGETSPEED2 === 1)">
         <div class="indicator-content">
           <div class="indicator-title">PALLET-2 TARGET SPEED</div>
           <!-- <div class="indicator-value">{{ currentState.lcmrPallet2.targetSpeed }} </div> -->

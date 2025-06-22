@@ -28,7 +28,7 @@ export class MachineOeeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.wsService.initConnection('io-status');
+    this.wsService.initConnection('oee-status');
     this.wsService.getMessages().subscribe((msg: string) => {
       try {
         this.data = JSON.parse(msg);

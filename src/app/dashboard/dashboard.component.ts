@@ -15,6 +15,7 @@ import { ToastMessageComponent } from '../toast-message/toast-message.component'
 import { MachineSettingsComponent } from './machine-settings/machine-settings.component';
 import { MachineOeeComponent } from './machine-oee/machine-oee.component';
 import { LocalStorageService } from '../services/services/local-storage.service';
+import { WebsocketService } from '../configuration/WebsocketService';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private wsService:WebsocketService
 
   ) {
 
@@ -246,9 +248,12 @@ export class DashboardComponent implements OnInit {
 
   activeScreen: string = 'home';
 
-  showScreen(screen: string): void {
+showScreen(screen: string): void {
+  if (this.activeScreen !== screen) {
     this.activeScreen = screen;
+    this.wsService.ngOnDestroy();
   }
+}
   async performLogout() {
     try {
       await this.apiService.logout();
