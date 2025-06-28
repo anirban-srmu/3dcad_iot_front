@@ -30,6 +30,16 @@ constructor(private wsService:WebsocketService){}
     });
   }
 
+  refreshManualStatus() {
+    this.wsService.getMessages(this.connectionId).subscribe((msg: string) => {
+      try {
+        this.data = JSON.parse(msg);
+      } catch (e) {
+        console.error('Error parsing message:', e);
+      }
+    });
+  }
+
   value:boolean=false
   toggleValue(address: string){
         this.value = !this.value;
@@ -58,6 +68,7 @@ constructor(private wsService:WebsocketService){}
       this.wsService.sendMessage(this.connectionId2,message).subscribe({
         next: (response: any) => {
           console.log("WebSocket Response:", response);
+          this.refreshManualStatus();
         },
         error: (error: any) => {
           console.error("WebSocket Error:", error);

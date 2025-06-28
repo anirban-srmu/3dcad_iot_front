@@ -8,7 +8,7 @@
 
       <!-- Pallet 1 Fixture 1 -->
       <div class="compact-section">
-        <h3>XBOT-1 FIXTURE-1</h3>
+        <h3>XBOT-1 FIXTURE</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-SEL')"  [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-SEL']"
           >CYLINDER SEL</button>
@@ -34,7 +34,7 @@
       </div>
 
       <!-- Pallet 1 Fixture 2 -->
-      <div class="compact-section">
+      <!-- <div class="compact-section">
         <h3>XBOT-1 FIXTURE-2</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-SEL')" [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-SEL']">CYLINDER SEL</button>
@@ -57,11 +57,11 @@
           <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-BLOWER-OFF', true)"
                   (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-BLOWER-OFF', false)">OFF</button>
         </div>
-      </div>
+      </div> -->
 
       <!-- Pallet 2 Fixture 1 -->
       <div class="compact-section">
-        <h3>XBOT-2 FIXTURE-1</h3>
+        <h3>XBOT-2 FIXTURE</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-SEL']">CYLINDER SEL</button>
           <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-ADVANCE', true)"
@@ -86,7 +86,7 @@
       </div>
 
       <!-- Pallet 2 Fixture 2 -->
-      <div class="compact-section">
+      <!-- <div class="compact-section">
         <h3>XBOT-2 FIXTURE-2</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-SEL']">CYLINDER SEL</button>
@@ -109,7 +109,7 @@
           <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-BLOWER-OFF', true)"
                   (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-BLOWER-OFF', false)">OFF</button>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Column 2: Gantry 1 -->
@@ -121,13 +121,13 @@
         <div class="btn-group">
           <button (click)="toggleControl('HMI-GANTRY-1-ROTARY-CYL-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-ROTARY-CYL-1-SEL']">CYL-1 SEL</button>
           <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-DWN', true)"
-                  (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-DWN', false)">DWN</button>
+                  (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-DWN', false)">ADVANCE</button>
           <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-RETRACT', true)"
                   (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-RETRACT', false)">RETRACT</button>
         </div>
       </div>
 
-      <div class="compact-section">
+      <!-- <div class="compact-section">
         <h3>ROTARY 2</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-GANTRY-1-ROTARY-CYL-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-ROTARY-CYL-2-SEL']">CYL-2 SEL</button>
@@ -136,7 +136,7 @@
           <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-2-RETRACT', true)"
                   (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-2-RETRACT', false)">RETRACT</button>
         </div>
-      </div>
+      </div> -->
 
       <div class="compact-section">
         <h3>VACUUM 1</h3>
@@ -182,9 +182,9 @@
         </div>
       </div>
 
-      <h5>VISION SYSTEM</h5>
+      <!-- <h5>VISION SYSTEM</h5> -->
 
-      <div class="compact-section">
+      <!-- <div class="compact-section">
         <h3>STAGE 1</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-TRIGGER')">TRIGGER</button>
@@ -192,9 +192,9 @@
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-RESULT-NOK')">NOK</button>
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-RESET')">RESET</button>
         </div>
-      </div>
+      </div> -->
 
-      <div class="compact-section">
+      <!-- <div class="compact-section">
         <h3>STAGE 2</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-TRIGGER')">TRIGGER</button>
@@ -202,8 +202,8 @@
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-RESULT-NOK')">NOK</button>
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-RESET')">RESET</button>
         </div>
-      </div>
-
+      </div> -->
+<!--
       <div class="compact-section">
         <h3>STAGE 3</h3>
         <div class="btn-group">
@@ -212,7 +212,7 @@
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-3-RESULT-NOK')">NOK</button>
           <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-3-RESET')">RESET</button>
         </div>
-      </div>
+      </div>-->
     </div>
 
     <!-- Column 3: Gantry 2 -->
@@ -224,13 +224,13 @@
         <div class="btn-group">
           <button (click)="toggleControl('HMI-GANTRY-2-ROTARY-CYL-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-ROTARY-CYL-1-SEL']">CYL-1 SEL</button>
           <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-DWN', true)"
-                  (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-DWN', false)">DWN</button>
+                  (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-DWN', false)">ADVANCE</button>
           <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-RETRACT', true)"
                   (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-RETRACT', false)">RETRACT</button>
         </div>
       </div>
 
-      <div class="compact-section">
+      <!-- <div class="compact-section">
         <h3>ROTARY 2</h3>
         <div class="btn-group">
           <button (click)="toggleControl('HMI-GANTRY-2-ROTARY-CYL-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-ROTARY-CYL-2-SEL']">CYL-2 SEL</button>
@@ -239,7 +239,7 @@
           <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-2-RETRACT', true)"
                   (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-2-RETRACT', false)">RETRACT</button>
         </div>
-      </div>
+      </div> -->
 
       <div class="compact-section">
         <h3>UP DWN 1</h3>
