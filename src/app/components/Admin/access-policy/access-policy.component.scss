@@ -1,0 +1,26 @@
+.permission-card {
+  background: #686868;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  user-select: none; /* prevents text selection on click */
+}
+.permission-card:hover {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.15);
+}
+  /* Center PLC checkboxes and space them nicely */
+  .plc-checkboxes .form-check {
+    margin: 0 2rem;
+  }
+  /* Limit max width of role selector for better centering */
+  .role-select-container {
+    max-width: 350px;
+    width: 100%;
+  }
+
+.form-check-input {
+  width: 1.8rem;
+  height: 1.8rem;
+  cursor: pointer;
+}

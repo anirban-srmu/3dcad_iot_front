@@ -17,28 +17,38 @@
           </li> -->
           <li ngbNavItem>
             <a ngbNavLink class="nav-link">
-              <i class="fas fa-plug me-2"></i>API Master
+              <i class="fas fa-plug me-2"></i>Machine Config
             </a>
             <ng-template ngbNavContent>
-              <app-api-master></app-api-master>
+              <app-machine-config></app-machine-config>
             </ng-template>
           </li>
-          <!-- <li ngbNavItem>
+          <li ngbNavItem>
             <a ngbNavLink class="nav-link">
-              <i class="fas fa-plug me-2"></i>Shift Master
+              <i class="fas fa-users me-2"></i>Users
             </a>
             <ng-template ngbNavContent>
-              <app-api-master></app-api-master>
+              <app-users></app-users>
             </ng-template>
-          </li> -->
+          </li>
+          <li ngbNavItem>
+            <a ngbNavLink class="nav-link">
+              <i class="fas fa-user-tie me-2"></i>User Access
+            </a>
+            <ng-template ngbNavContent>
+              <app-access-policy></app-access-policy>
+            </ng-template>
+          </li>
           <li ngbNavItem>
             <a ngbNavLink class="nav-link">
               <i class="fas fa-plug me-2"></i>Message Master
             </a>
             <ng-template ngbNavContent>
-              <app-api-master></app-api-master>
+              <app-alarm-master></app-alarm-master>
             </ng-template>
           </li>
+          
+
           <!-- <li ngbNavItem>
             <a ngbNavLink class="nav-link">
               <i class="fas fa-bell me-2"></i>Alarm Master

@@ -3,18 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WebsocketService } from 'src/app/configuration/WebsocketService';
 
-interface CardItem {
-  id: number;
-  title: string;
-  value: boolean;
-}
-
-interface Button {
-  id: number;
-  title: string;
-  value: boolean;
-}
-
 @Component({
   selector: 'app-robot-status',
   standalone: true,
@@ -25,7 +13,8 @@ interface Button {
 export class RobotStatusComponent implements OnInit, OnDestroy {
   data: any;
   isConnected = false;
-
+connectionId="robo-status";
+connectionId2="plc-write";
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit(): void {
@@ -33,8 +22,8 @@ export class RobotStatusComponent implements OnInit, OnDestroy {
   }
 
   private connectToStatus(): void {
-    this.wsService.initConnection('robo-status');
-    this.wsService.getMessages().subscribe({
+    this.wsService.initConnection(this.connectionId);
+    this.wsService.getMessages(this.connectionId).subscribe({
       next: (msg: string) => {
         try {
           this.data = JSON.parse(msg);
@@ -59,22 +48,18 @@ export class RobotStatusComponent implements OnInit, OnDestroy {
     console.log("Sending message:", message);
 
     try {
-      // Ensure we're connected to the write endpoint
       if (!this.isConnected) {
-        this.wsService.initConnection('plc-write');
-        // Add a small delay to ensure connection is established
+        this.wsService.initConnection(this.connectionId2);
         await new Promise(resolve => setTimeout(resolve, 300));
       }
 
-      // Send the message
-      this.wsService.sendMessage(message).subscribe({
+      this.wsService.sendMessage(this.connectionId2,message).subscribe({
         next: (response: any) => {
           console.log("WebSocket Response:", response);
-          // Handle successful response
         },
         error: (error: any) => {
           console.error("WebSocket Error:", error);
-          // Handle error (maybe retry)
+
         }
       });
     } catch (error) {
@@ -87,6 +72,7 @@ export class RobotStatusComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.wsService.closeConnection(this.connectionId);
     this.wsService.ngOnDestroy();
   }
 }

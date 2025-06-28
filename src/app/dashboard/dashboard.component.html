@@ -3,28 +3,42 @@
 <div class="dashboard-container">
   <!-- Fixed Header with Logo -->
   <app-toast-message></app-toast-message>
-  <header class="dashboard-header">
-    <div class="container-fluid">
-      <div class="row align-items-center">
-        <div class="col">
-          <h1 class="dashboard-title">
-            <i class="fas fa-industry me-2"></i>
-            MACHINE DASHBOARD
-          </h1>
+<header class="dashboard-header">
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-between">
+      <div class="col">
+        <h1 class="dashboard-title">
+          <i class="fas fa-industry me-2"></i>
+          MACHINE DASHBOARD
+        </h1>
+      </div>
+      <div class="col-auto d-flex align-items-center gap-3">
+        <!-- Company Logo -->
+        <img src="assets/3DCAD-new-logo.png" alt="Company Logo" class="dashboard-logo">
+
+        <!-- User Info -->
+        <div class="user-info text-start me-3">
+          <div><strong>Machine ID:</strong> {{machine_id}}</div>
+          <div><strong>Shift:</strong> {{shift_name}}</div>
         </div>
-        <div class="col-auto d-flex align-items-center">
-          <img src="assets/3DCAD-new-logo.png" alt="Company Logo" class="dashboard-logo">
-          <button class="btn btn-link text-decoration-none me-3" (click)="performLogout()" title="Logout">
-            <i class="fas fa-sign-out-alt fa-lg text-dark fa-3x"></i> <!-- Added text-dark class -->
-          </button>
-        </div>
+
+        <!-- Clock -->
+          <div class="digital-clock me-3"><i class="fas fa-clock ms-2 mx-2"></i>{{ digitalTime }}</div>
+          <div class="digital-clock me-3"><i class="fas fa-clock ms-2 mx-2"></i>{{ shift_end_time }}</div>
+
+        <!-- Logout Button -->
+        <button class="btn btn-link text-decoration-none" (click)="performLogout()" title="Logout">
+          <i class="fas fa-sign-out-alt fa-lg text-dark fa-3x"></i>
+        </button>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <!-- Main Content Area -->
   <main class="dashboard-content">
-    <app-home-screen *ngIf="activeScreen === 'home'"></app-home-screen>
+    <app-home-screen *ngIf="activeScreen === 'home' "></app-home-screen>
     <app-io-status *ngIf="activeScreen === 'io-status'"></app-io-status>
     <app-auto-mode *ngIf="activeScreen === 'auto-mode'"></app-auto-mode>
     <app-sensor-status *ngIf="activeScreen === 'sensor-status'"></app-sensor-status>
@@ -40,13 +54,15 @@
   <nav class="dashboard-menu">
     <div class="container-fluid h-100">
       <div class="row h-100 g-0 text-center">
-        <!-- Home -->
-        <div class="col menu-item" [class.active]="activeScreen === 'home'" (click)="showScreen('home')">
-          <div class="menu-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="menu-label">HOME SCREEN</div>
+<!-- Home Menu Item -->
+      <div class="col menu-item" 
+          [class.active]="activeScreen === 'home'" 
+          (click)="showScreen('home')">
+        <div class="menu-icon">
+          <i class="fas fa-home"></i>
         </div>
+        <div class="menu-label">HOME SCREEN</div>
+      </div>
 
         <!-- I/O Status -->
         <div class="col menu-item" [class.active]="activeScreen === 'io-status'" (click)="showScreen('io-status')">

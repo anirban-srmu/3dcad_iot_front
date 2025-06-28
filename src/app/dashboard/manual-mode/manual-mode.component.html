@@ -12,91 +12,93 @@
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS1'] === 1">
-                I/P CONVEYOR MODE</div>
+              <div class="form-control-sm small-value px-2 py-1">
+                CONNECTION STATUS:
+                <span
+                  class="fw-bold"
+                  [ngClass]="{
+                    'text-success': data?.CONNECTIONSTATUS == 1,
+                    'text-danger': data?.CONNECTIONSTATUS != 1
+                  }"
+                >
+                  {{ data?.CONNECTIONSTATUS == 1 ? 'CONNECTED' : 'DISCONNECTED' }}
+                </span>
+
+              </div>
             </div>
+
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS1'] === 1">CONTROLLER
-                STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS1'] === 1">PROGRAM STATUS
+              <div class="form-control-sm bg-light small-value">
+                CONTROLLER STATUS: {{ data?.CONTROLLERSTATUS }}
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS1'] === 1">
+              <div class="form-control-sm bg-light small-value">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
+                  <span>ACTUAL SPEED : {{ data?.ACTUALSPEED }}</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED1'] === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED1'] === 1">
-                <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
-                </div>
-              </div>
-            </div>
-                        <div class="mb-1">
               <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPoslc">
+                <span class="input-group-text bg-light input-group-label">JOG SPEED</span>
+                <input type="number" class="form-control-sm bg-light small-value form-control"
+                  (change)="pushValue('JOG_SPEED', jogspeed)" [(ngModel)]="jogspeed" placeholder="JOG SPEED" />
               </div>
             </div>
-              <div class="mb-1">
+
+
+            <div class="mb-1">
               <div class="input-group input-group-sm input-group-custom">
                 <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedlc">
+                <input type="number" class="form-control-sm bg-light small-value form-control"
+                  (change)="pushValue('TARGET_SPEED', targetspeed)" [(ngModel)]="targetspeed"
+                  placeholder="TARGET SPEED" />
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME1',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE1',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE1',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD1', 'TARGETPOS1',targetPoslc, 'TARGETSPEED1',targetSpeedlc)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE1', 'TARGETPOS1',targetPoslc, 'TARGETSPEED1',targetSpeedlc)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START1',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP1',1)">STOP</button>
+              <!-- <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME1',true)">HOME</button> -->
+              <button class="btn btn-xs btn-secondary flex-grow-1" (mousedown)="pushValue('INITIALIZE',true)"
+                (mouseup)="pushValue('INITIALIZE',false)">INITIALIZE</button>
+              <button class="btn btn-xs flex-grow-1 openable" [class.enabled]="this.value"
+                (click)="toggleValue('OP_ENABLE')">
+                OP ENABLE
+              </button>
+              <button class="btn btn-xs btn-success flex-grow-1" (mousedown)="pushValue('JOG_FORWARD', true)"
+                (mouseup)="pushValue('JOG_FORWARD', false)">
+                JOG FORWARD
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Card 2: Unload Conveyor -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">UNLOADING CONVEYOR</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS2'] === 1">
-                I/P CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS2 === 1">
+                UNLOADING CONVEYOR MODE POS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS2'] === 1">CONTROLLER
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS2 === 1">
+                CONTROLLER
                 STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS2'] === 1">PROGRAM STATUS
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS2 === 1">PROGRAM
+                STATUS
               </div>
             </div>
 
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS2'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS2 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL POS</span>
 
@@ -104,14 +106,14 @@
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED2'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED2 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL SPEED</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED2'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED2 === 1">
                 <div class="d-flex justify-content-between">
                   <span>JOG SPEED</span>
                 </div>
@@ -124,7 +126,7 @@
                   [(ngModel)]="targetPosuc">
               </div>
             </div>
-              <div class="mb-1">
+            <div class="mb-1">
               <div class="input-group input-group-sm input-group-custom">
                 <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
                 <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
@@ -134,69 +136,73 @@
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME2',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE2',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE2',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME2',true)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1"
+                (click)="pushValue('INITIALIZE2',true)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE2',true)">OP
+                ENABLE</button>
               <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD2', 'TARGETPOS2',targetPosuc, 'TARGETSPEED2',targetSpeeduc)">JOG FORWARD</button>
+                (click)="setJogValues('JOGFORWARD2', 'TARGETPOS2',targetPosuc, 'TARGETSPEED2',targetSpeeduc)">JOG
+                FORWARD</button>
               <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE2', 'TARGETPOS2',targetPosuc, 'TARGETSPEED2',targetSpeeduc)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START2',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP2',1)">STOP</button>
+                (click)="setJogValues('JOGREVERSE2', 'TARGETPOS2',targetPosuc, 'TARGETSPEED2',targetSpeeduc)">JOG
+                REVERSE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START2',true)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP2',true)">STOP</button>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Card 3: Gantry 1 -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 1 FESTO</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS3'] === 1">I/P
-                CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS3 === 1">
+                GANTRY 1 FESTO MODE POS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS3'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS3 === 1">
                 CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS3'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS3 === 1">
                 PROGRAM STATUS</div>
             </div>
 
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS3'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS3 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL POS</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED3'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED3 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL SPEED</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED3'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED3 === 1">
                 <div class="d-flex justify-content-between">
                   <span>JOG SPEED</span>
                 </div>
               </div>
             </div>
-                        <div class="mb-1">
+            <div class="mb-1">
               <div class="input-group input-group-sm input-group-custom">
                 <span class="input-group-text bg-light input-group-label">TARGET POS</span>
                 <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
                   [(ngModel)]="targetPosg1f">
               </div>
             </div>
-              <div class="mb-1">
+            <div class="mb-1">
               <div class="input-group input-group-sm input-group-custom">
                 <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
                 <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
@@ -206,62 +212,66 @@
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME3',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE3',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE3',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME3',true)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1"
+                (click)="pushValue('INITIALIZE3',true)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE3',true)">OP
+                ENABLE</button>
               <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD3', 'TARGETPOS3',targetPosg1f, 'TARGETSPEED3',targetSpeedg1f)">JOG FORWARD</button>
+                (click)="setJogValues('JOGFORWARD3', 'TARGETPOS3',targetPosg1f, 'TARGETSPEED3',targetSpeedg1f)">JOG
+                FORWARD</button>
               <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE3', 'TARGETPOS3',targetPosg1f, 'TARGETSPEED3',targetSpeedg1f)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START3',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP3',1)">STOP</button>
+                (click)="setJogValues('JOGREVERSE3', 'TARGETPOS3',targetPosg1f, 'TARGETSPEED3',targetSpeedg1f)">JOG
+                REVERSE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START3',true)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP3',true)">STOP</button>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Card 4: Gantry 2 -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+      <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
             <h6 class="card-title mb-0 small-font">GANTRY 2 FESTO</h6>
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS4'] === 1">I/P
-                CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS4 === 1">
+                GANTRY 2 FESTO MODE </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS4'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS4 === 1">
                 CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS4'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS4 === 1">
                 PROGRAM STATUS</div>
             </div>
-                        <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS4'] === 1">
+            <div class="mb-1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS4 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL POS</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED4'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED4 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL SPEED</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED4'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED4 === 1">
                 <div class="d-flex justify-content-between">
                   <span>JOG SPEED</span>
                 </div>
               </div>
             </div>
 
-                        <div class="mb-1">
+            <div class="mb-1">
               <div class="input-group input-group-sm input-group-custom">
                 <span class="input-group-text bg-light input-group-label">TARGET POS</span>
                 <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
@@ -279,24 +289,26 @@
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME4',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE4',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE4',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME4',true)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1"
+                (click)="pushValue('INITIALIZE4',true)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE4',true)">OP
+                ENABLE</button>
               <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD4', 'TARGETPOS4',targetPosg2f, 'TARGETSPEED4',targetSpeedg2f)">JOG FORWARD</button>
+                (click)="setJogValues('JOGFORWARD4', 'TARGETPOS4',targetPosg2f, 'TARGETSPEED4',targetSpeedg2f)">JOG
+                FORWARD</button>
               <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE4', 'TARGETPOS4',targetPosg2f, 'TARGETSPEED4',targetSpeedg2f)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START4',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP4',1)">STOP</button>
+                (click)="setJogValues('JOGREVERSE4', 'TARGETPOS4',targetPosg2f, 'TARGETSPEED4',targetSpeedg2f)">JOG
+                REVERSE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START4',true)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP4',true)">STOP</button>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
-    <!-- Second Row - 4 Cards -->
-    <div class="row g-2">
-      <!-- Card 5: Gantry 1 Y Axis -->
+    <!-- <div class="row g-2">
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
@@ -304,72 +316,60 @@
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS5'] === 1">I/P
-                CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS5 === 1">
+                GANTRY 1 Y AXIS MODE POS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS5'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS5 === 1">
                 CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS5'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS5 === 1">
                 PROGRAM STATUS</div>
             </div>
 
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS5'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS5 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL POS</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED5'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED5 === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
+                  <span>RUNNIG PROGRAM NUMBER</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED5'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED5 === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
+                  <span>SELECT PROGRAM NUMBER</span>
                 </div>
-              </div>
-            </div>
-                        <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg1y">
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg1y">
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME5',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE5',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE5',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME5',true)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1"
+                (click)="pushValue('INITIALIZE5',true)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE5',true)">OP
+                ENABLE</button>
               <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD5', 'TARGETPOS5',targetPosg1y, 'TARGETSPEED5',targetSpeedg1y)">JOG FORWARD</button>
+                (click)="setJogValues('JOGFORWARD5', 'TARGETPOS5',targetPosg1y, 'TARGETSPEED5',targetSpeedg1y)">JOG
+                FORWARD</button>
               <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE5', 'TARGETPOS5',targetPosg1y, 'TARGETSPEED5',targetSpeedg1y)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START5',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP5',1)">STOP</button>
+                (click)="setJogValues('JOGREVERSE5', 'TARGETPOS5',targetPosg1y, 'TARGETSPEED5',targetSpeedg1y)">JOG
+                REVERSE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START5',true)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP5',true)">STOP</button>
             </div>
           </div>
         </div>
       </div>
 
-
-      <!-- Card 7: Gantry 2 Y Axis -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
@@ -377,71 +377,60 @@
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS7'] === 1">I/P
-                CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS7 === 1">
+                GANTRY 2 X AXIS MODE POS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS7'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS7 === 1">
                 CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS7'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS7 === 1">
                 PROGRAM STATUS</div>
             </div>
 
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS7'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS7 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL POS</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED7'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED7 === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
+                  <span>RUNNIG PROGRAM NUMBER</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED7'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED7 === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
+                  <span>SELECT PROGRAM NUMBER</span>
                 </div>
-              </div>
-            </div>
-                        <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg2y">
-              </div>
-            </div>
-              <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg2y">
               </div>
             </div>
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME7',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE7',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE7',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME7',true)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1"
+                (click)="pushValue('INITIALIZE7',true)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE7',true)">OP
+                ENABLE</button>
               <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD7', 'TARGETPOS7',targetPosg2y, 'TARGETSPEED7',targetSpeedg2y)">JOG FORWARD</button>
+                (click)="setJogValues('JOGFORWARD7', 'TARGETPOS7',targetPosg2y, 'TARGETSPEED7',targetSpeedg2y)">JOG
+                FORWARD</button>
               <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE7', 'TARGETPOS7',targetPosg2y, 'TARGETSPEED7',targetSpeedg2y)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START7',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP7',1)">STOP</button>
+                (click)="setJogValues('JOGREVERSE7', 'TARGETPOS7',targetPosg2y, 'TARGETSPEED7',targetSpeedg2y)">JOG
+                REVERSE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START7',true)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP7',true)">STOP</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Card 8: Gantry 2 X Axis -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 compact-card" [class.border-success]="false">
           <div class="card-header bg-dark text-white py-1">
@@ -449,69 +438,60 @@
           </div>
           <div class="card-body p-1">
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['IPCONVEYORMODEPOS6'] === 1">I/P
-                CONVEYOR MODE</div>
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS6 === 1">
+                GANTRY 2 Y AXIS MODE POS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['CONTROLLERSTATUS6'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS6 === 1">
                 CONTROLLER STATUS</div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['PROGRAMSTATUS6'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS6 === 1">
                 PROGRAM STATUS</div>
             </div>
 
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALPOS6'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS6 === 1">
                 <div class="d-flex justify-content-between">
                   <span>ACTUAL POS</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['ACTUALSPEED6'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED6 === 1">
                 <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
+                  <span>RUNNIG PROGRAM NUMBER</span>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data['JOGSPEED6'] === 1">
+              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED6 === 1">
                 <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
+                  <span>SELECT PROGRAM NUMBER</span>
                 </div>
               </div>
             </div>
-                        <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg2x">
-              </div>
-            </div>
-              <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg2x">
-              </div>
-            </div>
+
           </div>
           <div class="card-footer p-1">
             <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME6',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE6',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE6',1)">OP ENABLE</button>
+              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME6',true)">HOME</button>
+              <button class="btn btn-xs btn-secondary flex-grow-1"
+                (click)="pushValue('INITIALIZE6',true)">INITIALIZE</button>
+              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE6',true)">OP
+                ENABLE</button>
               <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD6', 'TARGETPOS6',targetPosg2x, 'TARGETSPEED6',targetSpeedg2x)">JOG FORWARD</button>
+                (click)="setJogValues('JOGFORWARD6', 'TARGETPOS6',targetPosg2x, 'TARGETSPEED6',targetSpeedg2x)">JOG
+                FORWARD</button>
               <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE6', 'TARGETPOS6',targetPosg2x, 'TARGETSPEED6',targetSpeedg2x)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START6',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP6',1)">STOP</button>
+                (click)="setJogValues('JOGREVERSE6', 'TARGETPOS6',targetPosg2x, 'TARGETSPEED6',targetSpeedg2x)">JOG
+                REVERSE</button>
+              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START6',true)">START</button>
+              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP6',true)">STOP</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

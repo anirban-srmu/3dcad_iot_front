@@ -3,7 +3,7 @@
     max-width: 100%;
     padding: 0 8px;
   }
-  
+
   .machine-home-container {
     min-height: 80vh; /* Minimum height */
     height: auto; /* Will expand beyond min-height if needed */
@@ -16,7 +16,7 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
   }
-  
+
   /* Card Styles */
   .compact-card {
     font-size: 0.8rem; /* Slightly increased */
@@ -24,24 +24,24 @@
     border-radius: 4px;
     overflow: hidden;
   }
-  
+
   .card-header {
     padding: 4px 8px;
     background-color: #343a40 !important;
     border-bottom: 1px solid rgba(0,0,0,0.1);
   }
-  
+
   .card-title {
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+
   .card-body {
     padding: 8px;
   }
-  
+
   /* Indicator Styles */
   // .form-control-sm {
   //   padding: 4px 8px; /* Slightly more padding */
@@ -54,23 +54,23 @@
   //   border: 1px solid #dee2e6;
   // }
 
-  
-  
+
+
   .glow-true {
     color: white;
     font-weight: bold;
     box-shadow: 0 0 6px rgba(40, 167, 69, 0.7);
     background-color: #39c059 !important;
   }
-  
+
   .glow-false {
     color: white;
     font-weight: bold;
     box-shadow: 0 0 6px rgba(220, 53, 69, 0.7);
     background-color: #e94f5e !important;
   }
-  
-  
+
+
   /* Button Styles */
   .btn-xs {
     padding: 4px 8px; /* More padding */
@@ -85,57 +85,57 @@
     color: #fff; /* White text */
     border: none;
   }
-  
+
   .btn-xs:hover {
     background-color: #23272b; /* Darker on hover */
   }
-  
+
   /* Button Container */
   .d-flex.flex-wrap {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
   }
-  
+
   /* Responsive adjustments */
   @media (max-width: 576px) {
     .compact-card {
       font-size: 0.75rem;
     }
-  
+
     .form-control-sm {
       font-size: 0.7rem;
       min-height: 24px;
       padding: 3px 6px;
     }
-  
+
     .btn-xs {
       font-size: 0.7rem;
       padding: 3px 6px;
       min-width: 50px;
     }
   }
-  
+
   @media (min-width: 768px) {
     .btn-xs {
       min-width: 70px;
     }
   }
-  
+
   @media (min-width: 1200px) {
     .compact-card {
       font-size: 0.85rem;
     }
-  
+
     .form-control-sm {
       font-size: 0.8rem;
     }
-  
+
     .btn-xs {
       font-size: 0.8rem;
     }
   }
-  
+
   /* Base style for all small buttons */
 .btn-xs {
     font-weight: bold;
@@ -151,7 +151,7 @@
     white-space: nowrap;
     transition: background-color 0.2s ease;
   }
-  
+
   /* Keep it dark on hover/focus/active */
   .btn-xs:hover,
   .btn-xs:focus,
@@ -163,7 +163,7 @@
     outline: none !important;
     box-shadow: none !important;
   }
-  
+
   /* Disable Bootstrap color variants */
   .btn-primary,
   .btn-secondary,
@@ -174,7 +174,7 @@
     color: #fff !important;
     border: none !important;
   }
-  
+
   .btn-primary:hover,
   .btn-secondary:hover,
   .btn-warning:hover,
@@ -194,7 +194,7 @@
     color: #fff !important;
     border: none !important;
   }
-  
+
 
 
 
@@ -262,4 +262,11 @@
   color: #6c757d;
   opacity: 0.5;
   font-size: 0.8rem;
+}
+
+
+
+.openable.enabled {
+  background-color: #28a745 !important; /* Bootstrap success (green) */
+  color: #fff;
 }

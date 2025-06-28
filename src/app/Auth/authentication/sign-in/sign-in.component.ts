@@ -1,16 +1,12 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ToastMessageComponent } from "src/app/toast-message/toast-message.component";
 import { ApiService } from "./api.service";
 import { NavigationEnd, Router } from "@angular/router";
-import { CommonModule, PlatformLocation } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
-import { AppModule } from "src/app/app.module";
 import { filter } from "rxjs";
-import { EncryptionService } from "src/app/shared/configuration/EncryptionService";
 import { SessionService } from "src/app/shared/configuration/SessionService";
-
-
 
 @Component({
   standalone: true,
@@ -20,7 +16,7 @@ import { SessionService } from "src/app/shared/configuration/SessionService";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   @ViewChild(ToastMessageComponent) toastMessageComponent!: ToastMessageComponent;
   loginForm: FormGroup;
   spinner: boolean = false;
@@ -29,24 +25,26 @@ export class SignInComponent implements OnInit {
   errorMessage: string | undefined;
   captcha: string = '';
   captchaError: boolean = false;
+  rfidInput: string = '';
+  rfidScanInProgress: boolean = false;
+  private rfidInputTimeout: any;
+
   constructor(
     private sessionService: SessionService,
     private apiService: ApiService,
     private router: Router,
     private fb: FormBuilder,
-
   ) {
-
     this.loginForm = this.fb.group({
+      role: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
   }
+
   ngOnInit(): void {
     sessionStorage.clear();
     localStorage.clear();
-    // Call the logout method from ApiService
     this.apiService.logout();
 
     this.router.events
@@ -58,47 +56,97 @@ export class SignInComponent implements OnInit {
           this.apiService.logout();
         }
       });
+
+    this.setupRfidListener();
   }
+
+  ngOnDestroy(): void {
+    document.removeEventListener('keypress', this.handleKeyPress.bind(this));
+    if (this.rfidInputTimeout) {
+      clearTimeout(this.rfidInputTimeout);
+    }
+  }
+
+  setupRfidListener(): void {
+    document.addEventListener('keypress', this.handleKeyPress.bind(this));
+  }
+
+  handleKeyPress(event: KeyboardEvent): void {
+    if ((event.target as HTMLElement).tagName.toLowerCase() === 'input') {
+      return;
+    }
+
+
+    this.rfidInput += event.key;
+
+
+    if (this.rfidInputTimeout) {
+      clearTimeout(this.rfidInputTimeout);
+    }
+
+
+    this.rfidInputTimeout = setTimeout(() => {
+      if (this.rfidInput.length > 5) {
+        this.processRfidLogin();
+      }
+      this.rfidInput = '';
+    }, 300);
+  }
+
+  processRfidLogin(): void {
+    if (this.rfidScanInProgress) return;
+
+    this.rfidScanInProgress = true;
+    const rfidTag = this.rfidInput.trim();
+
+    if (!rfidTag) {
+      this.rfidScanInProgress = false;
+      return;
+    }
+
+    this.spinner = true;
+    this.apiService.loginWithRfid(rfidTag).then(
+      (data: any) => this.handleSuccessfulLogin(data),
+      (error: any) => {
+        this.handleLoginError(error);
+        this.rfidScanInProgress = false;
+      }
+    ).finally(() => {
+      this.spinner = false;
+      this.rfidScanInProgress = false;
+    });
+  }
+
   submitLoginForm(): void {
     if (this.loginForm.invalid) {
       this.triggerToast('Invalid', 'Please fill out all required fields.', 'warning');
       return;
     }
     this.spinner = true;
-    const loginData = { ...this.loginForm.value }; 
-    delete loginData.captchaInput;
-  //  const jsonString = JSON.stringify(loginData);
     const data = {
+      role: this.loginForm.controls['role'].value,
       Username: this.loginForm.controls['username'].value,
       Password: this.loginForm.controls['password'].value,
-      Process:''
+      Process: ''
     }
     this.apiService.login(data).then(
       (data: any) => this.handleSuccessfulLogin(data),
       (error: any) => this.handleLoginError(error)
     ).finally(() => this.spinner = false);
   }
+
   triggerToast(header: string, body: string, type: string): void {
     this.toastMessageComponent.showToast(header, body, type);
-    
   }
 
-  checkLoginStatus() {
-
-  }
-  token: any
-  username: any;
-  oldPassword: any;
   private async handleSuccessfulLogin(data: any): Promise<void> {
-    if (data.token) {
+    if (data) {
       this.triggerToast('Login', data.message, 'success');
-      sessionStorage.setItem('accessToken', data.token);
+      sessionStorage.setItem('data', JSON.stringify(data));
     }
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Wait for toast to show
-    this.router.navigate(['/dashboard']); // Change '/dashboard' to your desired route
-
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    this.router.navigate(['/dashboard']);
   }
-
 
   handleLoginError(error: any): void {
     if (error instanceof HttpErrorResponse) {
@@ -118,10 +166,4 @@ export class SignInComponent implements OnInit {
   getSecureFileUrl(filename: string): string {
     return `/assets/secure/${filename}`;
   }
-  tokenStatus: boolean | undefined;
-
-
-
-
-
 }

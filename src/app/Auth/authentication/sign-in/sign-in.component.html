@@ -8,9 +8,33 @@
           <div class="text-center">
             <img src="/assets/3DCAD-new-logo.png" class="taneira-logo" alt="Taneira Logo" loading="lazy">
           </div>
+
+          <!-- RFID Scan Indicator -->
+          <div class="text-center mb-3" *ngIf="rfidScanInProgress">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Scanning RFID...</span>
+            </div>
+            <p class="mt-2">Processing RFID card...</p>
+          </div>
+
           <div class="text-center mt-2">
             <!-- Login Form -->
-            <form [formGroup]="loginForm" *ngIf="currentForm === 'login'" (ngSubmit)="submitLoginForm()">
+            <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+              <!-- Role Dropdown -->
+              <div class="input-group mb-3 custom-input">
+                <select formControlName="role" class="form-control form-control-md" aria-label="Select Role">
+                  <option value="" disabled selected>Select Role</option>
+                  <option value="operator">Operator</option>
+                  <option value="engineer">Engineer</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div *ngIf="loginForm.controls['role'].invalid && loginForm.controls['role'].touched"
+                class="text-danger small">
+                Please select a role.
+              </div>
+
+              <!-- Username Field -->
               <div class="input-group mb-3 custom-input">
                 <span class="input-group-text custom-icon">
                   <i class="feather icon-user fa-1x"></i>
@@ -22,6 +46,8 @@
                 class="text-danger small">
                 Username is required.
               </div>
+
+              <!-- Password Field -->
               <div class="input-group mb-3 custom-input">
                 <span class="input-group-text custom-icon">
                   <i class="feather icon-lock fa-1x"></i>
@@ -33,12 +59,22 @@
                 class="text-danger small">
                 Password is required.
               </div>
-              <button type="submit" class="btn custom-btn w-100 mb-3" [disabled]="loginForm.invalid ">
-                <i *ngIf="spinner" class="feather icon-loader spinner"></i>
-                <i *ngIf="!spinner" class="feather icon-log-in"></i>
+
+              <button type="submit" class="btn custom-btn w-100 mb-3" [disabled]="loginForm.invalid">
+                <i *ngIf="spinner && !rfidScanInProgress" class="feather icon-loader spinner"></i>
+                <i *ngIf="!spinner && !rfidScanInProgress" class="feather icon-log-in"></i>
                 Sign In
               </button>
             </form>
+
+            <!-- RFID Login Hint -->
+            <div class="mt-3">
+              <p class="small text-muted">Or scan your RFID card to login</p>
+              <div class="rfid-indicator" *ngIf="rfidInput">
+                <i class="feather icon-credit-card"></i>
+                <span class="ms-2">RFID detected</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

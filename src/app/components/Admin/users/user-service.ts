@@ -5,19 +5,6 @@ import { Config } from 'src/app/configuration/env.config';
 
 
 
-export interface User {
-  id: number;     // Role ID
-  username: string;   // Role Name
-  firstName: string; 
-  lastName: string; 
-  emailId: string; 
-   password: string; 
-  roleId:number;
-  roleName:String;
-  isEditing?: boolean; // Optional property to track editing state
-  isRoleDropdownOpen?: boolean; // add this property
-  selectedRole?: string; // add this property
-}
 
 
 @Injectable({
@@ -39,23 +26,23 @@ export class UserService {
   }
 
   // GET all levels
-  getAllUsers(page: number, size: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.BaseEndpoint}user/getAll?page=${page}&size=${size}`, { headers: this.reqHeader });
+  getAllUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.BaseEndpoint}users`, { headers: this.reqHeader });
   }
 
   // GET level by ID
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.BaseEndpoint}user/getById/${id}`, { headers: this.reqHeader });
+  getUserById(username: any): Observable<any> {
+    return this.http.get<any>(`${this.BaseEndpoint}user/${username}`, { headers: this.reqHeader });
   }
 
   // POST to create a new level
-  saveUser(user: User): Observable<any> {
-    return this.http.post(`${this.BaseEndpoint}user/save`, user, { headers: this.reqHeader });
+  saveUser(user: any): Observable<any> {
+    return this.http.post(`${this.BaseEndpoint}users/`, user, { headers: this.reqHeader });
   }
 
   // POST to update an existing level
-  updateUser(user: User): Observable<any> {
-    return this.http.post(`${this.BaseEndpoint}user/update`, user, { headers: this.reqHeader });
+  updateUser(user: any): Observable<any> {
+    return this.http.post(`${this.BaseEndpoint}users/${user.username}`, user, { headers: this.reqHeader });
   }
 
   // DELETE a level by ID

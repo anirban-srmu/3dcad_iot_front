@@ -1,5 +1,5 @@
 <app-card [options]="false">
-  <div class="mt-5">
+  <div class="mt-0">
     <app-toast-message></app-toast-message>
     <div class="text-end">
       <!-- Add Level Button -->
@@ -16,10 +16,9 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>User Name</th>
-            <!-- <th>Password</th> -->
-            <th>Email ID</th>
+            <th>Password</th>
+            <!-- <th>Email ID</th> -->
             <th class="role">Role</th>
-            <th class="store">Store Code</th>
             <th class="action">Action</th>
           </tr>
         </thead>
@@ -30,21 +29,21 @@
               <input
                 *ngIf="row.isEditing"
                 type="text"
-                [(ngModel)]="row.firstName"
+                [(ngModel)]="row.firstname"
                 class="form-control"
                 (input)="sanitizeInput(row, 'firstName')"
               />
-              <span *ngIf="!row.isEditing">{{ row.firstName }}</span>
+              <span *ngIf="!row.isEditing">{{ row.firstname }}</span>
             </td>
             <td>
               <input
                 *ngIf="row.isEditing"
                 type="text"
-                [(ngModel)]="row.lastName"
+                [(ngModel)]="row.lastname"
                 class="form-control"
                 (input)="sanitizeInput(row, 'lastName')"
               />
-              <span *ngIf="!row.isEditing">{{ row.lastName }}</span>
+              <span *ngIf="!row.isEditing">{{ row.lastname }}</span>
             </td>
             <td>
               <input
@@ -60,59 +59,29 @@
               <input
                 *ngIf="row.isEditing"
                 type="text"
-                [(ngModel)]="row.emailId"
+                [(ngModel)]="row.password"
                 class="form-control"
-                (input)="sanitizeInput(row, 'emailId')"
+                (input)="sanitizeInput(row, 'password')"
                 
               />
-              <span *ngIf="!row.isEditing">{{ row.emailId }}</span>
+              <span *ngIf="!row.isEditing">{{ row.password }}</span>
             </td>
-            
-            
+           <td>
+            <div class="role-select">
+              <select
+                class="form-select"
+                [(ngModel)]="row.roleid"
+                [disabled]="!row.isEditing"
+                (change)="selectRole(row, $event)" 
+                required>
+                <option value="" disabled>Select a role</option>
+                <option *ngFor="let role of staticRoles" [value]="role.roleid">{{ role.roleName }}</option>
+              </select>
+              <small class="text-danger" *ngIf="row.isEditing && !row.roleid">Role  is mandatory</small>
+            </div>
+          </td>
             <td>
-              <div class="role-select">
-                <select
-                  class="form-select"
-                  [(ngModel)]="row.roleId"
-                  [disabled]="!row.isEditing"
-                  (change)="selectRole(row, $event)" required
-                  required>
-                  <option value="" disabled>Select a role</option>
-                  <option *ngFor="let role of roles" [value]="role.roleid">{{ role.roleName }}</option>
-                </select>
-                <small class="text-danger" *ngIf="row.isEditing && !row.roleId">Level ID is mandatory</small>
-              </div>
-            </td>
-            <td>
-              <div class="role-select">
-                <select
-                  class="form-select"
-                  [(ngModel)]="row.storeId"
-                  [disabled]="!row.isEditing"
-                  (change)="selectStore(row, $event)" 
-                  required>
-                  <option value="" disabled>Select a Store</option>
-                  <option *ngFor="let store of stores" [value]="store.id">{{ store.storeCode }}</option>
-                </select>
-                <small class="text-danger" *ngIf="row.isEditing && !row.storeId">Level ID is mandatory</small>
-              </div>
-            </td>
-            <td>
-              <span class="mx-2 switch-container">
-                <label class="switch">
-                  <input
-                    type="checkbox"
-                    [(ngModel)]="row.active"
-                    [disabled]="!row.isEditing"
-                    [checked]="row.active"
-                    [ngClass]="{
-                      'checked': row.active,
-                      'disabled': !row.isEditing
-                    }"
-                  />
-                  <span class="slider"></span>
-                </label>
-              </span>
+
               
               <span
                 class="mx-2 edit-icon"

@@ -88,7 +88,7 @@
 
 /* Header styles */
 .table thead th {
-  background-color: #b78053; /* Header background color */
+  background-color: #6c6c6c; /* Header background color */
   color: #ffffff; /* White text color */
   font-weight: bold; /* Bold header text */
 }
@@ -115,22 +115,22 @@
   border-bottom-right-radius: 10px;
 }
 
-.footer {
-  width: 100%; /* Full width */
-  height: 350px; /* Adjust the height if needed */
-  background-image: url('/assets/footerflowers.avif'); /* Background image for footer */
-  background-size: contain; /* Make the image fit within the container */
-  background-position: right; /* Center the background image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  padding: 20px 0; /* Vertical padding for the footer */
-  display: flex; /* Flexbox for alignment */
-  justify-content: right; /* Center the content horizontally */
-  align-items: right; /* Center the content vertically */
-  position: fixed; /* Fix the footer at the bottom of the page */
-  bottom: 0; /* Position at the bottom */
-  z-index: -1000; /* Ensure it stays above other content */
-  color: white; /* Text color for contrast */
-}
+// .footer {
+//   width: 100%; /* Full width */
+//   height: 350px; /* Adjust the height if needed */
+//   background-image: url('/assets/footerflowers.avif'); /* Background image for footer */
+//   background-size: contain; /* Make the image fit within the container */
+//   background-position: right; /* Center the background image */
+//   background-repeat: no-repeat; /* Do not repeat the image */
+//   padding: 20px 0; /* Vertical padding for the footer */
+//   display: flex; /* Flexbox for alignment */
+//   justify-content: right; /* Center the content horizontally */
+//   align-items: right; /* Center the content vertically */
+//   position: fixed; /* Fix the footer at the bottom of the page */
+//   bottom: 0; /* Position at the bottom */
+//   z-index: -1000; /* Ensure it stays above other content */
+//   color: white; /* Text color for contrast */
+// }
 
 
 .footer-content {
@@ -138,7 +138,7 @@
 }
 
 .continue-shopping-btn {
-  background-color: #b78053;
+  background-color: #6f6f6f;
   color: white;
   padding: 12px 20px; /* Spacing for the button */
   border-radius: 5px; /* Rounded corners */
@@ -148,7 +148,7 @@
 }
 
 .continue-shopping-btn:hover {
-  background-color: #8c5a3d; /* Darker color on hover */
+  background-color: #7a7a7a; /* Darker color on hover */
 }
 
 .blurry-background {
@@ -236,7 +236,7 @@
 
 /* When the checkbox is checked, move the slider */
 input:checked + .slider {
-  background-color: #e60f6c;
+  background-color: #696969;
 }
 
 /* When the checkbox is checked, move the circle */
@@ -245,7 +245,7 @@ input:checked + .slider:before {
 }
 
 input:disabled :checked + .slider {
-  background-color: #e60f6c;  
+  background-color: #505050;  
   cursor: not-allowed;
 }
 
@@ -267,7 +267,7 @@ input:disabled + .slider:before {
 
 .custom-modal-pink .modal-header {
   background-color: #fcfcfc; /* Medium pink for header */
-  border-color: #da2689;
+  border-color: #696969;
   color: white;
 }
 
@@ -276,12 +276,12 @@ input:disabled + .slider:before {
 }
 
 .custom-modal-pink .btn-primary {
-  background-color: #da2689; /* Pink primary button */
-  border-color: #da2689;
+  background-color: #686868; /* Pink primary button */
+  border-color: #616161;
 }
 
 .custom-modal-pink .btn-primary:hover {
-  background-color: #da2689; /* Darker pink on hover */
+  background-color: #757575; /* Darker pink on hover */
 }
 
 

@@ -1,39 +1,78 @@
-<div class="table-container">
-    <button (click)="addNewRow()">➕ Add New</button>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let person of people">
-          <td>
-            <ng-container *ngIf="person.isNew; else showName">
-              <input [(ngModel)]="person.name" placeholder="Enter name" />
-            </ng-container>
-            <ng-template #showName>{{ person.name }}</ng-template>
-          </td>
-          <td>
-            <ng-container *ngIf="person.isNew; else showEmail">
-              <input [(ngModel)]="person.email" placeholder="Enter email" />
-            </ng-container>
-            <ng-template #showEmail>{{ person.email }}</ng-template>
-          </td>
-          <td>
-            <ng-container *ngIf="person.isNew">
-              <button (click)="submitNew(person)">Submit</button>
-              <button (click)="cancelNew(person)">Cancel</button>
-            </ng-container>
-            <ng-container *ngIf="!person.isNew">
-              <button (click)="deletePerson(person)">Delete</button>
-            </ng-container>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<app-card [options]="false">
+  <div class="mt-5">
+    <app-toast-message></app-toast-message>
+    <div class="text-end">
+      <button type="button" class="btn" style="border-color: #072f5f; color: #072f5f; border-radius: 0%;" 
+              (click)="addRow()" [disabled]="currentlyEditingIndex !== -1">
+        <i class="fas fa-plus"></i> Add Level
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="table table-bordered mt-2">
+        <thead>
+          <tr class="inner-shadow">
+            <th style="width: 20%;">SL No</th>
+             <th style="width: 30%;">Alaram Code</th>
+            <th style="width: 30%;">Alaram Message</th>
+            <th style="width: 10%;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of paginatedRows; let i = index">
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td>
+              <input 
+                *ngIf="row.isEditing" 
+                type="text" 
+                [(ngModel)]="row.AlaramCode" 
+                (input)="sanitizeInput(row)" 
+                class="form-control">
+              <span *ngIf="!row.isEditing">{{ row.AlaramCode }}</span>
+            </td>
+                        <td>
+              <input 
+                *ngIf="row.isEditing" 
+                type="text" 
+                [(ngModel)]="row.AlaramMessage" 
+                (input)="sanitizeInput(row)" 
+                class="form-control">
+              <span *ngIf="!row.isEditing">{{ row.AlaramMessage }}</span>
+            </td>
+            <td>
+              <span class="mx-2" *ngIf="row.isEditing" style="color:#072f5f" (click)="saveRow(row)">
+                <i class="fas fa-check fa-lg"></i>
+              </span>
+              <span class="mx-2" *ngIf="!row.isEditing && currentlyEditingIndex === -1" style="color:rgb(86, 86, 86)" (click)="editRow(row)">
+                <i class="fas fa-pen fa-lg"></i>
+              </span>
+              <span class="mx-2" *ngIf="!row.isEditing" style="color:rgb(86, 86, 86)" (click)="deleteRow(row.id)">
+                <i class="fas fa-trash fa-lg" style="color:#072f5f"></i>
+              </span>
+              <span class="mx-2" *ngIf="row.isEditing" style="color:rgb(86, 86, 86)" (click)="cancelEdit(row, i)">
+                <i class="fas fa-times fa-lg" style="color:#072f5f"></i>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-end mt-3">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+          </li>
+          <li class="page-item" [class.active]="page === currentPage" *ngFor="let page of [].constructor(totalPages); let i = index">
+            <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
-  
+</app-card>
+
+

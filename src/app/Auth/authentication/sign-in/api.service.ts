@@ -18,60 +18,54 @@ export class ApiService {
     private tokenKey: string | null = null;
     private reqHeader!: HttpHeaders;
 
-    constructor(private http: HttpClient, private cookieService: CookieService,private router: Router,private secretCodeService: SecretCodeService) {
-       
-    }
-nonceforlogin:any;
-login(data: any) {
-    return this.http.post(this.BaseEndpoint + 'login', data)
-    .toPromise()
-    .then((response: any) => {
-      // If the login is successful, store the access token
-      this.tokenKey = response.token;
-      this.isLoggedIn=true;
-      return response;
-    })
-    .catch((error) => {
-      // Handle any errors, possibly due to authentication failure
-      console.error('Login failed', error);
-      return Promise.reject(error);
-    });
-  }
+    constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private secretCodeService: SecretCodeService) {
 
-  logout(): Promise<any> {
-    // 1. Get token (early return if missing)
-    const token = sessionStorage.getItem('accessToken');
-    if (!token) {
-        return Promise.reject('No access token found');
+    }
+    nonceforlogin: any;
+    login(data: any) {
+        return this.http.post(this.BaseEndpoint + 'user/login', data)
+            .toPromise()
+            .then((response: any) => {
+                this.tokenKey = response.token;
+                this.isLoggedIn = true;
+                return response;
+            })
+            .catch((error) => {
+                console.error('Login failed', error);
+                return Promise.reject(error);
+            });
     }
 
-    // 2. Set headers (with Authorization)
-    const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    });
+    logout(): Promise<any> {
+        const token = sessionStorage.getItem('accessToken');
+        if (!token) {
+            return Promise.reject('No access token found');
+        }
 
-    // 3. Make API call (using proper URL encoding)
-    return this.http.post(
-        `${this.BaseEndpoint}logout?token=`+token,  // Remove token from URL
-        {},  // Empty body
-        { headers }
-    ).toPromise()
-    .then((response: any) => {
-        // 4. Clear local storage AFTER successful API call
-        sessionStorage.removeItem('accessToken');
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
 
-        
-        return response;  // Return API response
-    })
-    .catch(error => {
-        // 5. Still clear storage even if API fails
-        sessionStorage.removeItem('accessToken');
-        return Promise.reject(error);
-    });
+        return this.http.post(
+            `${this.BaseEndpoint}logout?token=` + token,  
+            {}, 
+            { headers }
+        ).toPromise()
+            .then((response: any) => {
+                sessionStorage.removeItem('accessToken');
+
+
+                return response;  
+            })
+            .catch(error => {
+                sessionStorage.removeItem('accessToken');
+                return Promise.reject(error);
+            });
+    }
+
+    loginWithRfid(rfidTag: string): Promise<any> {
+        return this.http.post<any>(`${this.BaseEndpoint}/auth/rfid-login`, { rfidTag }).toPromise();
+    }
 }
 
-
-}
-
-  

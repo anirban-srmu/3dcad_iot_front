@@ -1,551 +1,380 @@
-<div class="machine-home-container">
-  <div class="io-status-container ">
-    <!-- <h3 class="text-center mb-3">IO STATUS MONITOR</h3> -->
-    <div class="io-grid">
-      <!-- Main Control Unit -->
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['STARTPB-MAINCONTROLUNIT'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['STARTPB-MAINCONTROLUNIT'] === 1 }"></div>
-          <div class="io-label text-truncate" title="START PB - MAIN CONTROL UNIT">
-            START PB - MAIN CONTROL UNIT
-          </div>
+<div class="hmi-container">
+  <!-- Main Grid Layout -->
+  <div class="hmi-grid">
+
+    <!-- Column 1: Pallets -->
+    <div class="hmi-column">
+      <h5>HMI XBOT</h5>
+
+      <!-- Pallet 1 Fixture 1 -->
+      <div class="compact-section">
+        <h3>XBOT-1 FIXTURE-1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-SEL')"  [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-SEL']"
+          >CYLINDER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-ADVANCE', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-ADVANCE', false)">ADVANCE</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-1-PIN-CYLINDERS-RETRACT', false)">RETRACT</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-1-VACUUM-SEL')" [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-1-VACUUM-SEL']" >VACUUM SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-1-VACUUM-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-1-VACUUM-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-1-VACUUM-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-1-VACUUM-OFF', false)">OFF</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-1-BLOWER-SEL')" [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-1-BLOWER-SEL']">BLOWER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-1-BLOWER-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-1-BLOWER-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-1-BLOWER-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-1-BLOWER-OFF', false)">OFF</button>
         </div>
       </div>
 
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['STOPPB-MAINCONTROLUNIT'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['STOPPB-MAINCONTROLUNIT'] === 1 }"></div>
-          <div class="io-label text-truncate" title="STOP PB - MAIN CONTROL UNIT">
-            STOP PB - MAIN CONTROL UNIT
-          </div>
+      <!-- Pallet 1 Fixture 2 -->
+      <div class="compact-section">
+        <h3>XBOT-1 FIXTURE-2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-SEL')" [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-SEL']">CYLINDER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-ADVANCE', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-ADVANCE', false)">ADVANCE</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-PIN-CYLINDERS-RETRACT', false)">RETRACT</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-2-VACUUM-SEL')" [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-2-VACUUM-SEL']">VACUUM SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-VACUUM-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-VACUUM-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-VACUUM-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-VACUUM-OFF', false)">OFF</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-1-FIXTURE-2-BLOWER-SEL')" [class.active-sel]="controlStates['HMI-PALLET-1-FIXTURE-2-BLOWER-SEL']">BLOWER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-BLOWER-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-BLOWER-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-1-FIXTURE-2-BLOWER-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-1-FIXTURE-2-BLOWER-OFF', false)">OFF</button>
         </div>
       </div>
 
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['HOLDPB-MAINCONTROLUNIT'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['HOLDPB-MAINCONTROLUNIT'] === 1 }"></div>
-          <div class="io-label text-truncate" title="HOLD PB - MAIN CONTROL UNIT">
-            HOLD PB - MAIN CONTROL UNIT
-          </div>
+      <!-- Pallet 2 Fixture 1 -->
+      <div class="compact-section">
+        <h3>XBOT-2 FIXTURE-1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-SEL']">CYLINDER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-ADVANCE', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-ADVANCE', false)">ADVANCE</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-1-PIN-CYLINDERS-RETRACT', false)">RETRACT</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-1-VACUUM-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-1-VACUUM-SEL']">VACUUM SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-VACUUM-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-1-VACUUM-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-VACUUM-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-1-VACUUM-OFF', false)">OFF</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-1-BLOWER-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-1-BLOWER-SEL']">BLOWER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-BLOWER-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-1-BLOWER-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-1-BLOWER-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-1-BLOWER-OFF', false)">OFF</button>
         </div>
       </div>
 
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['RESTARTPB-MAINCONTROLUNIT'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['RESTARTPB-MAINCONTROLUNIT'] === 1 }"></div>
-          <div class="io-label text-truncate" title="HOLD PB - MAIN CONTROL UNIT">
-            RESTART PB - MAIN CONTROL UNIT
-          </div>
+      <!-- Pallet 2 Fixture 2 -->
+      <div class="compact-section">
+        <h3>XBOT-2 FIXTURE-2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-SEL']">CYLINDER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-ADVANCE', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-ADVANCE', false)">ADVANCE</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-PIN-CYLINDERS-RETRACT', false)">RETRACT</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-2-VACUUM-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-2-VACUUM-SEL']">VACUUM SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-VACUUM-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-VACUUM-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-VACUUM-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-VACUUM-OFF', false)">OFF</button>
+        </div>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-PALLET-2-FIXTURE-2-BLOWER-SEL')" [class.active-sel]="controlStates['HMI-PALLET-2-FIXTURE-2-BLOWER-SEL']">BLOWER SEL</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-BLOWER-ON', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-BLOWER-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-PALLET-2-FIXTURE-2-BLOWER-OFF', true)"
+                  (mouseup)="sendControl('HMI-PALLET-2-FIXTURE-2-BLOWER-OFF', false)">OFF</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2: Gantry 1 -->
+    <div class="hmi-column">
+      <h5>GANTRY 1</h5>
+
+      <div class="compact-section">
+        <h3>ROTARY 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-1-ROTARY-CYL-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-ROTARY-CYL-1-SEL']">CYL-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-DWN', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-1-RETRACT', false)">RETRACT</button>
         </div>
       </div>
 
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['EMERGENCYPB-MAINCONTROLUNIT'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['EMERGENCYPB-MAINCONTROLUNIT'] === 1 }"></div>
-          <div class="io-label text-truncate" title="HOLD PB - MAIN CONTROL UNIT">
-            EMERGENCY PB - MAIN CONTROL UNIT
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['STARTPB-INPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['STARTPB-INPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="START PB - INPUT CONVEYOR">
-            START PB - INPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['EMERGENCYPB-INPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['EMERGENCYPB-INPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="EMERGENCY PB - INPUT CONVEYOR">
-            EMERGENCY PB - INPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['EMERGENCYPB-OUTPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['EMERGENCYPB-OUTPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="EMERGENCY PB - OUTPUT CONVEYOR">
-            EMERGENCY PB - OUTPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['AIRPRESSURESWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['AIRPRESSURESWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="AIR PRESSURE SWITCH">
-            AIR PRESSURE SWITCH
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['UNLOADINGAREASENSOR-OUTPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['UNLOADINGAREASENSOR-OUTPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="UNLOADING AREA SENSOR - OUTPUT CONVEYOR">
-            UNLOADING AREA SENSOR - OUTPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRYLOADINGAREASENSOR-OUTPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRYLOADINGAREASENSOR-OUTPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY LOADING AREA SENSOR - OUTPUT CONVEYOR">
-            GANTRY LOADING AREA SENSOR - OUTPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['PARTPRESENTATROBOPICK-INPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['PARTPRESENTATROBOPICK-INPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="PART PRESENT AT ROBO PICK - INPUT CONVEYOR">
-            PART PRESENT AT ROBO PICK - INPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['PARTPRESNTATCONVEYOREND-INPUTCONVEYOR'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['PARTPRESNTATCONVEYOREND-INPUTCONVEYOR'] === 1 }"></div>
-          <div class="io-label text-truncate" title="PART PRESENT AT CONVEYOR END - INPUT CONVEYOR">
-            PART PRESENT AT CONVEYOR END - INPUT CONVEYOR
-          </div>
-        </div>
-      </div>
-      <!-- Robot Systems -->
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['PARTPRESENTATROBOTGRIPPER-1(VACUUMFEEDBACK)'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['PARTPRESENTATROBOTGRIPPER-1(VACUUMFEEDBACK)'] === 1 }"></div>
-          <div class="io-label text-truncate" title="PART PRESENT AT ROBOT GRIPPER -1 (VACUUM FEEDBACK)">
-            PART PRESENT AT ROBOT GRIPPER -1 (VACUUM FEEDBACK)
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['PARTPRESENTATROBOTGRIPPER-2(VACUUMFEEDBACK)'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['PARTPRESENTATROBOTGRIPPER-2(VACUUMFEEDBACK)'] === 1 }"></div>
-          <div class="io-label text-truncate" title="PART PRESENT AT ROBOT GRIPPER -2 (VACUUM FEEDBACK)">
-            'PART PRESENT AT ROBOT GRIPPER -2 (VACUUM FEEDBACK)
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['ROBOTGRIPPER-1UP/DWNCYLUPSIDEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['ROBOTGRIPPER-1UP/DWNCYLUPSIDEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="ROBOT GRIPPER - 1 UP/DWN CYL UP SIDE REEDSWITCH">
-            ROBOT GRIPPER - 1 UP/DWN CYL UP SIDE REEDSWITCH
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['ROBOTGRIPPER-1UP/DWNCLYDWNSIDEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['ROBOTGRIPPER-1UP/DWNCLYDWNSIDEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="ROBOT GRIPPER - 1 UP/DWN CYL DWN SIDE REEDSWITCH">
-            ROBOT GRIPPER - 1 UP/DWN CYL DWN SIDE REEDSWITCH
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['ROBOTGRIPPER-2UP/DWNCYLUPSIDEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['ROBOTGRIPPER-2UP/DWNCYLUPSIDEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="ROBOT GRIPPER - 2 UP/DWN CYL UP SIDE REEDSWITCH">
-            ROBOT GRIPPER - 2 UP/DWN CYL UP SIDE REEDSWITCH
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['ROBOTGRIPPER-2UP/DWNCLYDWNSIDEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['ROBOTGRIPPER-2UP/DWNCLYDWNSIDEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="ROBOT GRIPPER - 2 UP/DWN CYL DWN SIDE REEDSWITCH">
-            ROBOT GRIPPER - 2 UP/DWN CYL DWN SIDE REEDSWITCH
-          </div>
+      <div class="compact-section">
+        <h3>ROTARY 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-1-ROTARY-CYL-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-ROTARY-CYL-2-SEL']">CYL-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-2-DWN', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-2-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-ROTARY-CYL-2-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-ROTARY-CYL-2-RETRACT', false)">RETRACT</button>
         </div>
       </div>
 
-      <!-- Fixture Systems -->
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE1(VACUUMFEEDBACK)1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE1(VACUUMFEEDBACK)1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 1 (VACUUM FEEDBACK) 1">
-            FIXTURE 1 (VACUUM FEEDBACK) 1
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE1(VACUUMFEEDBACK)2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE1(VACUUMFEEDBACK)2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 1 (VACUUM FEEDBACK) 2">
-            FIXTURE 1 (VACUUM FEEDBACK) 2
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE1PARTPRESENT-1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE1PARTPRESENT-1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 1 PART PRESENT -1">
-            FIXTURE 1 PART PRESENT -1
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE1PARTPRESENT-2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE1PARTPRESENT-2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 1 PART PRESENT -2">
-            FIXTURE 1 PART PRESENT -2
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE1PARTPRESENT-3'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE1PARTPRESENT-3'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 1 PART PRESENT -3">
-            FIXTURE 1 PART PRESENT -3
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE1PARTPRESENT-4'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE1PARTPRESENT-4'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 1 PART PRESENT -4">
-            FIXTURE 1 PART PRESENT -4
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE2(VACUUMFEEDBACK)1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE2(VACUUMFEEDBACK)1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 2 (VACUUM FEEDBACK) 1">
-            FIXTURE 2 (VACUUM FEEDBACK) 1
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE2(VACUUMFEEDBACK)2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE2(VACUUMFEEDBACK)2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 2 (VACUUM FEEDBACK) 2">
-            FIXTURE 2 (VACUUM FEEDBACK) 2
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE2PARTPRESENT-1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE2PARTPRESENT-1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 2 PART PRESENT -1">
-            FIXTURE 2 PART PRESENT -1
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE2PARTPRESENT-2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE2PARTPRESENT-2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 2 PART PRESENT -2">
-            FIXTURE 2 PART PRESENT -2
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE2PARTPRESENT-3'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE2PARTPRESENT-3'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 2 PART PRESENT -3">
-            FIXTURE 2 PART PRESENT -3
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['FIXTURE2PARTPRESENT-4'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['FIXTURE2PARTPRESENT-4'] === 1 }"></div>
-          <div class="io-label text-truncate" title="FIXTURE 2 PART PRESENT -4">
-            FIXTURE 2 PART PRESENT -4
-          </div>
+      <div class="compact-section">
+        <h3>VACUUM 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-1-VACUUM-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-VACUUM-1-SEL']">VACUUM-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-VACUUM-1-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-VACUUM-1-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-VACUUM-1-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-VACUUM-1-OFF', false)">OFF</button>
         </div>
       </div>
 
-      <!-- Gantry Systems -->
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1VACUUMFEEDBACK1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1VACUUMFEEDBACK1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 VACUUM FEED BACK 1">
-            GANTRY 1 VACUUM FEED BACK 1
-          </div>
+      <div class="compact-section">
+        <h3>BLOWER 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-1-BLOWER-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-BLOWER-1-SEL']">BLOWER-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-BLOWER-1-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-BLOWER-1-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-BLOWER-1-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-BLOWER-1-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1VACUUMFEEDBACK2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1VACUUMFEEDBACK2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 VACUUM FEED BACK 2">
-            GANTRY 1 VACUUM FEED BACK 2
-          </div>
+
+      <div class="compact-section">
+        <h3>VACUUM 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-1-VACUUM-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-VACUUM-2-SEL']">VACUUM-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-VACUUM-2-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-VACUUM-2-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-VACUUM-2-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-VACUUM-2-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1PARTPRESENT1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1PARTPRESENT1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 PART PRESENT 1">
-            GANTRY 1 PART PRESENT 1
-          </div>
+
+      <div class="compact-section">
+        <h3>BLOWER 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-1-BLOWER-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-1-BLOWER-2-SEL']">BLOWER-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-BLOWER-2-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-BLOWER-2-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-1-BLOWER-2-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-1-BLOWER-2-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1PARTPRESENT2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1PARTPRESENT2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 PART PRESENT 2">
-            GANTRY 1 PART PRESENT 2
-          </div>
+
+      <h5>VISION SYSTEM</h5>
+
+      <div class="compact-section">
+        <h3>STAGE 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-TRIGGER')">TRIGGER</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-RESULT-OK')">OK</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-RESULT-NOK')">NOK</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-1-RESET')">RESET</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1ROTARYCYL1ADVANCEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1ROTARYCYL1ADVANCEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 ROTARY CYL 1 ADVANCE REEDSWITCH">
-            GANTRY 1 ROTARY CYL 1 ADVANCE REEDSWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>STAGE 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-TRIGGER')">TRIGGER</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-RESULT-OK')">OK</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-RESULT-NOK')">NOK</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-2-RESET')">RESET</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1ROTARYCYL1RETRACTREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1ROTARYCYL1RETRACTREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 ROTARY CYL 1 RETRACT REEDSWITCH">
-            GANTRY 1 ROTARY CYL 1 RETRACT REEDSWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>STAGE 3</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-3-TRIGGER')">TRIGGER</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-3-RESULT-OK')">OK</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-3-RESULT-NOK')">NOK</button>
+          <button (click)="toggleControl('HMI-VISION-SYSTEM-STAGE-3-RESET')">RESET</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1ROTARYCYL2ADVANCEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1ROTARYCYL2ADVANCEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 ROTARY CYL 2 ADVANCE REEDSWITCH">
-            GANTRY 1 ROTARY CYL 2 ADVANCE REEDSWITCH
-          </div>
+    </div>
+
+    <!-- Column 3: Gantry 2 -->
+    <div class="hmi-column">
+      <h5>GANTRY 2</h5>
+
+      <div class="compact-section">
+        <h3>ROTARY 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-ROTARY-CYL-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-ROTARY-CYL-1-SEL']">CYL-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-DWN', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-1-RETRACT', false)">RETRACT</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1ROTARYCYL2RETRACTREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1ROTARYCYL2RETRACTREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 ROTARY CYL 2 RETRACT REEDSWITCH">
-            GANTRY 1 ROTARY CYL 2 RETRACT REEDSWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>ROTARY 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-ROTARY-CYL-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-ROTARY-CYL-2-SEL']">CYL-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-2-DWN', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-2-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-ROTARY-CYL-2-RETRACT', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-ROTARY-CYL-2-RETRACT', false)">RETRACT</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1TOYOFWDLIMITSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1TOYOFWDLIMITSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 TOYO FWD LIMIT SWITCH">
-            GANTRY 1 TOYO FWD LIMIT SWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>UP DWN 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-UP/DWN-CYL-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-UP/DWN-CYL-1-SEL']">CYL-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-1-DWN', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-1-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-1-UP', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-1-UP', false)">UP</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY1TOYOREVLIMITSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY1TOYOREVLIMITSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 1 TOYO REV LIMIT SWITCH">
-            GANTRY 1 TOYO REV LIMIT SWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>UP DWN 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-UP/DWN-CYL-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-UP/DWN-CYL-2-SEL']">CYL-2 SE</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-2-DWN', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-2-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-2-UP', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-UP/DWN-CYL-2-UP', false)">UP</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2VACUUMFEEDBACK1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2VACUUMFEEDBACK1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 VACUUM FEED BACK 1">
-            GANTRY 2 VACUUM FEED BACK 1
-          </div>
+
+      <div class="compact-section">
+        <h3>VACUUM-1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-VACUUM-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-VACUUM-1-SEL']">VACUUM-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-VACUUM-1-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-VACUUM-1-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-VACUUM-1-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-VACUUM-1-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2VACUUMFEEDBACK2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2VACUUMFEEDBACK2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 VACUUM FEED BACK 2">
-            GANTRY 2 VACUUM FEED BACK 2
-          </div>
+
+      <div class="compact-section">
+        <h3>BLOWER-1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-BLOWER-1-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-BLOWER-1-SEL']">BLOWER-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-BLOWER-1-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-BLOWER-1-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-BLOWER-1-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-BLOWER-1-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2PARTPRESENT1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2PARTPRESENT1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 PART PRESENT 1">
-            GANTRY 2 PART PRESENT 1
-          </div>
+
+      <div class="compact-section">
+        <h3>VACUUM-2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-VACUUM-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-VACUUM-2-SEL']">VACUUM-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-VACUUM-2-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-VACUUM-2-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-VACUUM-2-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-VACUUM-2-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2PARTPRESENT2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2PARTPRESENT2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 PART PRESENT 2">
-            GANTRY 2 PART PRESENT 2
-          </div>
+
+      <div class="compact-section">
+        <h3>BLOWER-2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-GANTRY-2-BLOWER-2-SEL')" [class.active-sel]="controlStates['HMI-GANTRY-2-BLOWER-2-SEL']">BLOWER-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-BLOWER-2-ON', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-BLOWER-2-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-GANTRY-2-BLOWER-2-OFF', true)"
+                  (mouseup)="sendControl('HMI-GANTRY-2-BLOWER-2-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2ROTARYCYL1ADVANCEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2ROTARYCYL1ADVANCEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 ROTARY CYL 1 ADVANCE REEDSWITCH">
-            GANTRY 2 ROTARY CYL 1 ADVANCE REEDSWITCH
-          </div>
+    </div>
+
+    <!-- Column 4: Robot -->
+    <div class="hmi-column">
+      <h5>ROBOT</h5>
+
+      <div class="compact-section">
+        <h3>UP DWN 1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-ROBOT-UP/DWN-CYL-1-SEL')" [class.active-sel]="controlStates['HMI-ROBOT-UP/DWN-CYL-1-SEL']">CYL-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-UP/DWN-CYL-1-DWN', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-UP/DWN-CYL-1-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-UP/DWN-CYL-1-UP', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-UP/DWN-CYL-1-UP', false)">UP</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2ROTARYCYL1RETRACTREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2ROTARYCYL1RETRACTREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 ROTARY CYL 1 RETRACT REEDSWITCH">
-            GANTRY 2 ROTARY CYL 1 RETRACT REEDSWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>UP DWN 2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-ROBOT-UP/DWN-CYL-2-SEL')" [class.active-sel]="controlStates['HMI-ROBOT-UP/DWN-CYL-2-SEL']">CYL-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-UP/DWN-CYL-2-DWN', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-UP/DWN-CYL-2-DWN', false)">DWN</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-UP/DWN-CYL-2-UP', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-UP/DWN-CYL-2-UP', false)">UP</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2ROTARYCYL2ADVANCEREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2ROTARYCYL2ADVANCEREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 ROTARY CYL 2 ADVANCE REEDSWITCH">
-            GANTRY 2 ROTARY CYL 2 ADVANCE REEDSWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>VACUUM-1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-ROBOT-VACUUM-1-SEL')" [class.active-sel]="controlStates['HMI-ROBOT-VACUUM-1-SEL']">VACUUM-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-VACUUM-1-ON', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-VACUUM-1-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-VACUUM-1-OFF', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-VACUUM-1-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2ROTARYCYL2RETRACTREEDSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2ROTARYCYL2RETRACTREEDSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 ROTARY CYL 2 RETRACT REEDSWITCH">
-            GANTRY 2 ROTARY CYL 2 RETRACT REEDSWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>BLOWER-1</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-ROBOT-BLOWER-1-SEL')" [class.active-sel]="controlStates['HMI-ROBOT-BLOWER-1-SEL']">BLOWER-1 SEL</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-BLOWER-1-ON', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-BLOWER-1-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-BLOWER-1-OFF', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-BLOWER-1-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2TOYOFWDLIMITSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2TOYOFWDLIMITSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 TOYO FWD LIMIT SWITCH">
-            GANTRY 2 TOYO FWD LIMIT SWITCH
-          </div>
+
+      <div class="compact-section">
+        <h3>VACUUM-2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-ROBOT-VACUUM-2-SEL')" [class.active-sel]="controlStates['HMI-ROBOT-VACUUM-2-SEL']">VACUUM-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-VACUUM-2-ON', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-VACUUM-2-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-VACUUM-2-OFF', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-VACUUM-2-OFF', false)">OFF</button>
         </div>
       </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['GANTRY2TOYOREVLIMITSWITCH'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['GANTRY2TOYOREVLIMITSWITCH'] === 1 }"></div>
-          <div class="io-label text-truncate" title="GANTRY 2 TOYO REV LIMIT SWITCH">
-            GANTRY 2 TOYO REV LIMIT SWITCH
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-1'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-1'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -1">
-            SAFETY DOOR -1
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-2'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-2'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -2">
-            SAFETY DOOR -2
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-3'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-3'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -3">
-            SAFETY DOOR -3
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-4'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-4'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -4">
-            SAFETY DOOR -4
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-5'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-5'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -5">
-            SAFETY DOOR -5
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-6'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-6'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -6">
-            SAFETY DOOR -6
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-7'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-7'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -7">
-            SAFETY DOOR -7
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-8'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-8'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -8">
-            SAFETY DOOR -8
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-9'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-9'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -9">
-            SAFETY DOOR -9
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-10'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-10'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -10">
-            SAFETY DOOR -10
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-11'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-11'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -11">
-            SAFETY DOOR -11
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-12'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-12'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -12">
-            SAFETY DOOR -12
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-13'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-13'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -13">
-            SAFETY DOOR -13
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-14'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-14'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -14">
-            SAFETY DOOR -14
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-15'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-15'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -15">
-            SAFETY DOOR -15
-          </div>
-        </div>
-      </div>
-      <div class="io-card text-center" [ngClass]="{ 'highlight': data['SAFETYDOOR-16'] === 1 }">
-        <div class="card-body p-1 d-flex flex-column align-items-center">
-          <div class="io-indicator" [ngClass]="{ 'active': data['SAFETYDOOR-16'] === 1 }"></div>
-          <div class="io-label text-truncate" title="SAFETY DOOR -16">
-            SAFETY DOOR -16
-          </div>
+
+      <div class="compact-section">
+        <h3>BLOWER-2</h3>
+        <div class="btn-group">
+          <button (click)="toggleControl('HMI-ROBOT-BLOWER-2-SEL')" [class.active-sel]="controlStates['HMI-ROBOT-BLOWER-2-SEL']">BLOWER-2 SEL</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-BLOWER-2-ON', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-BLOWER-2-ON', false)">ON</button>
+          <button (mousedown)="sendControl('HMI-ROBOT-BLOWER-2-OFF', true)"
+                  (mouseup)="sendControl('HMI-ROBOT-BLOWER-2-OFF', false)">OFF</button>
         </div>
       </div>
     </div>

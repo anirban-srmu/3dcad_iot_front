@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WebsocketService } from 'src/app/configuration/WebsocketService';
 
@@ -10,14 +10,18 @@ import { WebsocketService } from 'src/app/configuration/WebsocketService';
   templateUrl: './manual-mode.component.html',
   styleUrl: './manual-mode.component.scss'
 })
-export class ManualModeComponent {
+export class ManualModeComponent  implements OnInit, OnDestroy{
+
+  connectionId="manual-status";
+    connectionId2="plc-write";
+  isConnected: boolean= false;
 
 constructor(private wsService:WebsocketService){}
 
 
   ngOnInit(): void {
-    this.wsService.initConnection('robo-status');
-    this.wsService.getMessages().subscribe((msg: string) => {
+    this.wsService.initConnection(this.connectionId);
+    this.wsService.getMessages(this.connectionId).subscribe((msg: string) => {
       try {
         this.data = JSON.parse(msg);
       } catch (e) {
@@ -26,21 +30,47 @@ constructor(private wsService:WebsocketService){}
     });
   }
 
-  data:any;
-    pushValue(address: string, value: number): void {
-    if (typeof value !== 'number' || (value !== 0 && value !== 1)) {
-      console.error('Invalid value - must be 0 or 1');
-      return;
-    }
-    const update = {
-      [address]: value
-    };
-
-    this.wsService.sendMessage(JSON.stringify(update));
-
-    console.log(`Sent update: ${address} = ${value}`);
+  value:boolean=false
+  toggleValue(address: string){
+        this.value = !this.value;
+ this.pushValue(address, this.value);
+    console.log("value:", address,this.value);
   }
 
+  data:any;
+    async pushValue(address: string, value: any): Promise<void> {
+
+      const data = {
+      section: 'manual',
+      tag_name: address,
+      value: value
+    };
+    const message = JSON.stringify(data);
+
+    console.log("Sending message:", message);
+
+    try {
+      if (!this.isConnected) {
+        this.wsService.initConnection(this.connectionId2);
+        await new Promise(resolve => setTimeout(resolve, 300));
+      }
+
+      this.wsService.sendMessage(this.connectionId2,message).subscribe({
+        next: (response: any) => {
+          console.log("WebSocket Response:", response);
+        },
+        error: (error: any) => {
+          console.error("WebSocket Error:", error);
+
+        }
+      });
+    } catch (error) {
+      console.error("Command failed:", error);
+    }
+  }
+
+  jogspeed:number =0;
+  targetspeed:number =0;
 
 targetPoslc: number = 0;
 targetSpeedlc: number = 0;
@@ -57,11 +87,24 @@ targetSpeedg2y: number = 0;
 targetPosg1y: number = 0;
 targetSpeedg1y: number = 0;
 
-setJogValues(register: string, address1:any, pos: number,  address2:any, speed: number) {
-  this.pushValue(address1, pos);
-  this.pushValue(address2, speed);
-  this.pushValue(register, 1);
-  console.log("passing value to plc",address1, pos,address2, speed,register, 1)
+setJogValues(register: string,value:any) {
+if(this.jogspeed !== 0){
+ this.pushValue('JOG_SPEED', this.jogspeed);
+  console.log("JOG_SPEED",this.jogspeed)
 }
+if(this.targetspeed !==0){
+this.pushValue('TARGET_SPEED', this.targetspeed);
+ console.log("TARGET_SPEED",this.targetspeed)
+}
+ this.pushValue(register, value);
+  console.log("register, value",register, value)
+
+}
+
+  ngOnDestroy(): void {
+    this.wsService.closeConnection(this.connectionId);
+     this.wsService.closeConnection(this.connectionId2);
+    this.wsService.ngOnDestroy();
+  }
 
 }

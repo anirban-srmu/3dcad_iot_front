@@ -1,0 +1,52 @@
+<div class=" container d-flex flex-column  align-items-center ">
+
+  <!-- Role Dropdown -->
+  <div class="row mb-5 w-100 justify-content-start">
+    <div class="col-auto role-select-container">
+      <label for="roleSelect" class="form-label fw-bold fs-5">Select Role:</label>
+      <select id="roleSelect" class="form-select form-select-lg" [(ngModel)]="selectedRole" aria-label="Select Role">
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+  </div>
+
+<div class="row g-4 mb-4 w-100 justify-content-center">
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of permissions">
+    <label class="permission-card form-check d-flex align-items-center cursor-pointer" for="{{item}}">
+      <input class="form-check-input me-3 ms-3" type="checkbox" [(ngModel)]="policy[item]" id="{{item}}" />
+      <span class="fw-semibold fs-6 mt-2">
+        {{ item }}
+      </span>
+    </label>
+  </div>
+</div>
+
+  <div class="row mb-5 justify-content-center plc-checkboxes w-100">
+    <div class="col-auto">
+      <div class="form-check">
+        <input class="form-check-input mx-3" type="checkbox" [(ngModel)]="policy['READ PLC']" id="readPlc" />
+        <label class="form-check-label fw-semibold fs-5" for="readPlc">
+          READ PLC
+        </label>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="form-check ">
+        <input class="form-check-input mx-3" type="checkbox" [(ngModel)]="policy['WRITE PLC']" id="writePlc" />
+        <label class="form-check-label fw-semibold fs-5" for="writePlc">
+          WRITE PLC
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Button -->
+  <div class="row w-100">
+    <div class="col text-center">
+      <button class="btn btn-primary btn-lg px-5 shadow-sm" (click)="savePolicy()">
+        Save Policy
+      </button>
+    </div>
+  </div>
+
+</div>

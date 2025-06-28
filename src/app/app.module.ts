@@ -29,16 +29,16 @@ import * as echarts from 'echarts'; // Import ECharts here
   imports: [BrowserModule,AppRoutingModule, NgbModule, FormsModule, ReactiveFormsModule,NgxScannerQrcodeModule ,SharedModule,BrowserAnimationsModule,ResizableModule,ToastMessageComponent],
   providers: [
     provideHttpClient(withInterceptorsFromDi()), // Register HttpClient and DI interceptors
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: NonceInterceptor,
-        multi: true, // Ensure multiple interceptors are supported
-      },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: HttpInterceptorService,
-        multi: true, // Ensure multiple interceptors are supported
-      }
+      // {
+      //   provide: HTTP_INTERCEPTORS,
+      //   // useClass: NonceInterceptor,
+      //   multi: true, // Ensure multiple interceptors are supported
+      // },
+      // {
+      //   provide: HTTP_INTERCEPTORS,
+      //   useClass: HttpInterceptorService,
+      //   multi: true, // Ensure multiple interceptors are supported
+      // }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

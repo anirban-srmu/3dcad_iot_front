@@ -1,5 +1,5 @@
 
-<div class="row text-center mb-3">
+<div class="row text-center">
   <div class="col-md-3">
     <div class="card bg-dark text-light border-light">
       <div class="card-body">
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div class="row mb-3">
+<div class="row mt-0">
   <div class="col-md-4">
     <div class="alert alert-dark" role="alert">
       <strong>Alarm:</strong> {{ alaram }}
@@ -58,18 +58,9 @@
     </div>
   </div>
 </div>
-<!-- <div class="row mr-3">
-  <div class="col-md-6 ms-auto">
-    <div class="input-group" style="width: 500px;">
-      <input type="text" class="form-control" placeholder="Enter Description or variant Code...">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="button">Save</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
-<div class="table-responsive mb-3">
+
+<div class="table-responsive ">
   <table class="table table-bordered table-sm text-center align-middle">
     <thead class="table-dark">
       <tr>
@@ -87,23 +78,101 @@
     </tbody>
   </table>
 </div>
-<div class="table-responsive">
+<div class="table-responsive " *ngIf="barcodeHistory.length > 0">
   <table class="table table-bordered table-sm text-center align-middle">
-    <ng-container *ngFor="let pair of barcodePairs; let i = index">
-      <tbody class="history-pair">
+    <thead class="table-dark">
+      <tr>
+        <th>Barcode</th>
+        <th *ngFor="let stage of stageHeaders">{{ stage }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let record of barcodeHistory">
+        <!-- Barcode 1 -->
         <tr>
-          <td>{{ pair.barcode1 }}</td>
-          <td *ngFor="let color of pair.barcode1Stages" [ngClass]="getStageClass(color)">
+          <td>{{ record.data.set1.barcode1|| 'BARCODE-1' }}</td>
+          <td *ngFor="let color of [
+            record.data.set1.InputStation,
+            record.data.set1.Trace,
+            record.data.set1.Process,
+            record.data.set1.MES,
+            record.data.set1['Transfer-1'],
+            record.data.set1['Vision-1'],
+            record.data.set1['PickPlace-1'],
+            record.data.set1['Transfer-2'],
+            record.data.set1['Vision-2'],
+            record.data.set1['PickPlace-2'],
+            record.data.set1.TraceUpload,
+            record.data.set1.MESUpload,
+            record.data.set1.UnloadStation
+          ]" [ngClass]="getStageClass(color)">
             <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
           </td>
         </tr>
+        <!-- Barcode 2 -->
         <tr>
-          <td>{{ pair.barcode2 }}</td>
-          <td *ngFor="let color of pair.barcode2Stages" [ngClass]="getStageClass(color)">
+          <td>{{ record.data.set1.barcode2 || 'BARCODE-2' }}</td>
+          <td *ngFor="let color of [
+            record.data.set1.InputStation,
+            record.data.set1.Trace,
+            record.data.set1.Process,
+            record.data.set1.MES,
+            record.data.set1['Transfer-1'],
+            record.data.set1['Vision-1'],
+            record.data.set1['PickPlace-1'],
+            record.data.set1['Transfer-2'],
+            record.data.set1['Vision-2'],
+            record.data.set1['PickPlace-2'],
+            record.data.set1.TraceUpload,
+            record.data.set1.MESUpload,
+            record.data.set1.UnloadStation
+          ]" [ngClass]="getStageClass(color)">
             <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
           </td>
         </tr>
-      </tbody>
-    </ng-container>
+        <!-- Barcode 3 -->
+        <tr>
+          <td>{{ record.data.set2.barcode3 || 'BARCODE-3' }}</td>
+          <td *ngFor="let color of [
+            record.data.set2.InputStation,
+            record.data.set2.Trace,
+            record.data.set2.Process,
+            record.data.set2.MES,
+            record.data.set2['Transfer-1'],
+            record.data.set2['Vision-1'],
+            record.data.set2['PickPlace-1'],
+            record.data.set2['Transfer-2'],
+            record.data.set2['Vision-2'],
+            record.data.set2['PickPlace-2'],
+            record.data.set2.TraceUpload,
+            record.data.set2.MESUpload,
+            record.data.set2.UnloadStation
+          ]" [ngClass]="getStageClass(color)">
+            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+          </td>
+        </tr>
+        <!-- Barcode 4 -->
+        <tr>
+          <td>{{ record.data.set2.barcode4 || 'BARCODE-4' }}</td>
+          <td *ngFor="let color of [
+            record.data.set2.InputStation,
+            record.data.set2.Trace,
+            record.data.set2.Process,
+            record.data.set2.MES,
+            record.data.set2['Transfer-1'],
+            record.data.set2['Vision-1'],
+            record.data.set2['PickPlace-1'],
+            record.data.set2['Transfer-2'],
+            record.data.set2['Vision-2'],
+            record.data.set2['PickPlace-2'],
+            record.data.set2.TraceUpload,
+            record.data.set2.MESUpload,
+            record.data.set2.UnloadStation
+          ]" [ngClass]="getStageClass(color)">
+            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
   </table>
 </div>

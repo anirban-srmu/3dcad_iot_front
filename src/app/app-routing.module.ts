@@ -6,9 +6,7 @@ import { SignInComponent } from './Auth/authentication/sign-in/sign-in.component
 import { UsersComponent } from './components/Admin/users/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/auth.guard';
-import { RoleMasterComponent } from './components/Admin/role-master/role-master.component';
-import { LevelMasterComponent } from './components/Admin/level-master/level-master.component';
-import { StatusMasterComponent } from './components/Admin/status-master/status-master.component';
+
 
 
 

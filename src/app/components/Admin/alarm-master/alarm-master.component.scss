@@ -1,42 +1,79 @@
-.table-container {
-    background-color: #1e1e1e;
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    width: 100%;
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 100%;
+/* Main table */
+.table {
     border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white for glass effect */
+    backdrop-filter: blur(10px); /* Glassy effect */
+  
   }
   
-  th, td {
-    border: 1px solid #333;
-    padding: 8px;
-    text-align: left;
+  /* Sub-table styles */
+  .sub-table {
+    margin: 10px 0; /* Space above and below the sub-table */
+    padding-left: 15px; /* Left padding */
+    padding-right: 15px; /* Right padding */
+    background: rgba(255, 255, 255, 0.5); /* More transparent background for sub-table */
   }
   
-  input {
-    background-color: #333;
+  
+  
+  .my-orders-heading {
+  
+    font-weight: bold; /* Make the text bold */
+    color: #f1efed; /* Use a color that matches the theme */
+  
+  }
+  
+  /* Hover effect */
+  .my-orders-heading:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+  }
+  
+  /* Header styles */
+  .table thead th {
+    background-color: #3f3f3f; /* Header background color */
+    color: #ffffff; /* White text color */
+    font-weight: bold; /* Bold header text */
+  }
+  
+  /* Sub-table specific border and background */
+  
+  
+  
+  /* Additional styles for hover effects */
+  .table tbody tr:hover {
+    background-color: rgba(255, 237, 237, 0.5); /* Light highlight on hover */
+  }
+  
+  /* Rounded corners for each table cell */
+  
+  /* Optional: Add rounded corners to the first and last cells in each row */
+  .table tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .table tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+
+  .footer-content {
+    text-align: center;
+  }
+  
+  .continue-shopping-btn {
+    background-color: #454545;
     color: white;
-    border: 1px solid #555;
-    padding: 4px;
-    border-radius: 4px;
+    padding: 12px 20px; /* Spacing for the button */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Button text size */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s; /* Smooth hover effect */
   }
   
-  button {
-    margin-right: 4px;
-    padding: 4px 8px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .continue-shopping-btn:hover {
+    background-color: #565656; /* Darker color on hover */
   }
-  
-  button:hover {
-    background-color: #666;
-  }
+
   

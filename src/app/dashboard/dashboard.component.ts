@@ -16,6 +16,7 @@ import { MachineSettingsComponent } from './machine-settings/machine-settings.co
 import { MachineOeeComponent } from './machine-oee/machine-oee.component';
 import { LocalStorageService } from '../services/services/local-storage.service';
 import { WebsocketService } from '../configuration/WebsocketService';
+import { IndexedDbService } from '../services/IndexedDbService';
 
 
 @Component({
@@ -31,13 +32,13 @@ export class DashboardComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private wsService:WebsocketService
-
+    private wsService:WebsocketService,
+    private idbService:IndexedDbService
   ) {
 
   }
   data={
-  "faultCodes": {
+ 
     "1": "MASTER OFF FAULT",
     "2": "EMERGENCY STOP 1 PRESSED",
     "3": "EMERGENCY STOP 2 PRESSED",
@@ -240,11 +241,43 @@ export class DashboardComponent implements OnInit {
     "230": "ROBOT UP/DWN CYL 2 BOTH REEDSWITCH ON FAULT",
     "231": "ROBOT UP/DWN CYL 2 BOTH SOLENOID ON FAULT",
     "250": ""
-  }
+  
 }
-  ngOnInit(): void {
-    this.localStorageService.setItem("data",this.data);
+
+
+digitalTime: string = '';
+
+shift_name:any;
+machine_id:any;
+shift_start_time:any;
+shift_end_time:any;
+username:any;
+permission:any;
+sesssuion:any
+async ngOnInit(): Promise<void> {
+await this.idbService.saveAlarms(this.data);
+this.sesssuion=sessionStorage.getItem('data');
+  this.permission=sessionStorage.getItem('access');
+  this.permission=JSON.parse(this.permission);
+  this.shift_start_time=JSON.parse(this.sesssuion).shift_start_time
+  this.machine_id=JSON.parse(this.sesssuion).machine_id
+  this.shift_end_time=JSON.parse(this.sesssuion).shift_end_time
+  this.shift_name=JSON.parse(this.sesssuion).shift_name
+  this.username=JSON.parse(this.sesssuion).username
+  const allAlarms = await this.idbService.getAllAlarms();
+  this.localStorageService.setItem("alarms",allAlarms);
+  this.startDigitalClock(); 
   }
+
+startDigitalClock(): void {
+  setInterval(() => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    this.digitalTime = `${hours}:${minutes}:${seconds}`;
+  }, 1000);
+}
 
   activeScreen: string = 'home';
 

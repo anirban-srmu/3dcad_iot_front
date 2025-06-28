@@ -1,1 +1,91 @@
-<p>machine-config works!</p>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle">
+          <thead class="table-gray">
+            <tr>
+              <th>Machine ID</th>
+              <th>Operator ID</th>
+              <th >Api </th>
+              <th class="text-center">Status</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let equipment of filteredEquipments">
+              <!-- Machine ID Column -->
+              <td class="font-monospace">
+                <span *ngIf="!equipment.editing">{{ equipment.machineId }}</span>
+                <input *ngIf="equipment.editing" type="text" class="form-control form-control-sm bg-dark text-light" 
+                       [(ngModel)]="equipment.machineId">
+              </td>
+              
+              <!-- Operator ID Column -->
+              <td class="font-monospace">
+                <span *ngIf="!equipment.editing">{{ equipment.operatorId }}</span>
+                <input *ngIf="equipment.editing" type="text" class="form-control form-control-sm bg-dark text-light" 
+                       [(ngModel)]="equipment.operatorId">
+              </td>
+              
+              <!-- Equipment Name Column -->
+              <td>
+                <span *ngIf="!equipment.editing">{{ equipment.name }}</span>
+                <input *ngIf="equipment.editing" type="text" class="form-control form-control-sm bg-dark text-light" 
+                       [(ngModel)]="equipment.name">
+              </td>
+              
+              <!-- Status Column -->
+              <td class="text-center">
+                <span class="badge rounded-pill py-2 px-3" 
+                      *ngIf="!equipment.editing"
+                      [ngClass]="{
+                        'bg-success': equipment.status === 'enabled',
+                        'bg-secondary': equipment.status === 'disabled'
+                      }">
+                  {{ equipment.status | uppercase }}
+                </span>
+                <select *ngIf="equipment.editing" class="form-select form-select-sm bg-dark text-light" 
+                        [(ngModel)]="equipment.status">
+                  <option value="enabled">ENABLED</option>
+                  <option value="disabled">DISABLED</option>
+                </select>
+              </td>
+              
+              <!-- Actions Column -->
+              <td class="text-end">
+                <div class="btn-group btn-group-sm" *ngIf="!equipment.editing">
+                  <button class="btn btn-outline-info" (click)="startEditing(equipment)">
+                    <i class="fas fa-edit me-1"></i>Edit
+                  </button>
+                  <button class="btn" 
+                          [ngClass]="{
+                            'btn-outline-danger': equipment.status === 'enabled',
+                            'btn-outline-success': equipment.status === 'disabled'
+                          }"
+                          (click)="toggleEquipmentStatus(equipment)">
+                    <i class="fas me-1" 
+                       [ngClass]="{
+                         'fa-power-off': equipment.status === 'enabled',
+                         'fa-play': equipment.status === 'disabled'
+                       }"></i>
+                    {{ equipment.status === 'enabled' ? 'Disable' : 'Enable' }}
+                  </button>
+                </div>
+                
+                <div class="btn-group btn-group-sm" *ngIf="equipment.editing">
+                  <button class="btn btn-outline-success" (click)="saveEditing(equipment)">
+                    <i class="fas fa-save me-1"></i>Save
+                  </button>
+                  <button class="btn btn-outline-secondary" (click)="cancelEditing(equipment)">
+                    <i class="fas fa-times me-1"></i>Cancel
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

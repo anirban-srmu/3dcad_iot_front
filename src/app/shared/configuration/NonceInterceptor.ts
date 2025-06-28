@@ -66,7 +66,7 @@ export class NonceInterceptor implements HttpInterceptor {
       //   manifest-src 'self';
       // `.replace(/\s+/g, ' ').trim(); // Ensure the header value is a single-line string
 
-    //  headers = headers.set('Content-Security-Policy', cspHeader);
+     headers = headers.set('Content-Security-Policy', cspHeader);
       headers = headers.set('Strict-Transport-Security', 'max-age=7776000; includeSubDomains;preload');
       headers = headers.set('X-Permitted-Cross-Domain-Policies', 'none');
       headers = headers.set('Csp-Nonce', nonce);
